@@ -1,0 +1,13 @@
+
+<table>
+<tr>
+  <td>Name</td>
+</tr>
+<% @spells.each do |spell| %>
+
+  <tr>
+    <td><%= link_to spell.name, spell %></td>
+  </tr>
+
+<% end %>
+</table>

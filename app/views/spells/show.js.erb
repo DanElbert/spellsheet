@@ -1,0 +1,5 @@
+
+$("#spell_dialog").attr("title", "<%= @spell.name %>");
+$("#spell_content").html("<%= escape_javascript(render :partial => "show.html") %>");
+
+$("#spell_dialog").dialog("open");

@@ -1,0 +1,34 @@
+<table id="spells">
+  <tr>
+    <th>Spell</th>
+    <th>Level</th>
+    <th>Source</th>
+    <th>Is Learned?</th>
+    <th></th>
+  </tr>
+<% klass_spell_spell_books.each do |kssb| %>
+  <% klass_spell = kssb.klass_spell %>
+  <tr>
+    <td><%= link_to klass_spell.spell.name, klass_spell.spell, :remote => true %></td>
+    <td><%= klass_spell.level %></td>
+    <td><%= klass_spell.spell.source %></td>
+    <td>
+      <%= link_to kssb.is_learned ? "Yes" : "No", toggle_learned_spell_book_path(:id => spell_book.id, :klass_spell_spell_book_id => kssb.id), :remote => true, :method => :post, :class => "action_link" %>
+    </td>
+    <td><%= link_to "Remove", remove_spell_spell_book_path(:id => spell_book.id, :spell_id => klass_spell.id), :remote => true, :method => :delete, :class => "action_link" %>
+  </tr>
+<% end %>
+</table>
+
+<div id="spell_dialog">
+  <div id="spell_content"></div>
+</div>
+
+<script type="text/javascript">
+$(".action_link").bind('ajax:complete', function() {
+  $("#spell_filter_form").submit();
+});
+
+$("#spell_dialog").dialog({width: "600px", autoOpen: false});
+
+</script>

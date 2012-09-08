@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  subschool: MyString
+  descriptor: MyString
+  casting_time: MyString
+  verbal: 
+  somatic: 
+  material: 
+  focus: 
+  divine_focus: 
+  short_description: MyString
+  costly_components: 
+  range: MyString
+  area: MyString
+  effect: MyString
+  targets: MyString
+  duration: MyString
+  dismissible: 
+  shapeable: 
+  saving_throw: MyString
+  spell_resistence: MyString
+  description: MyText
+  source: MyString
+
+two:
+  name: MyString
+  subschool: MyString
+  descriptor: MyString
+  casting_time: MyString
+  verbal: 
+  somatic: 
+  material: 
+  focus: 
+  divine_focus: 
+  short_description: MyString
+  costly_components: 
+  range: MyString
+  area: MyString
+  effect: MyString
+  targets: MyString
+  duration: MyString
+  dismissible: 
+  shapeable: 
+  saving_throw: MyString
+  spell_resistence: MyString
+  description: MyText
+  source: MyString

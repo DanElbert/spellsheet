@@ -1,0 +1,23 @@
+<h1><%= @spell.name %></h1>
+
+<%= @spell.school ? raw("<strong>School</strong> #{@spell.school.name};") : "" %>
+
+<% klasses = @spell.klass_spells.joins(:klass).order("klasses.name") %>
+
+<strong>Level</strong> <%= klasses.map { |ks| "#{ks.klass.name} #{ks.level}" }.join(", ") %>
+
+<h2>CASTING</h2>
+
+<strong>Casting Time</strong> <%= @spell.casting_time %><br />
+<strong>Components</strong> <%= @spell.components %><br />
+
+<h2>EFFECT</h2>
+
+<strong>Range</strong> <%= @spell.range %><br />
+<strong>Target</strong> <%= @spell.targets %><br />
+<strong>Duration</strong> <%= @spell.duration %><br />
+<strong>Saving Throw</strong> <%= @spell.saving_throw %>; <strong>Spell Resistance</strong> <%= @spell.spell_resistence %>
+
+<h2>DESCRIPTION</h2>
+
+<%= @spell.description %>

@@ -1,0 +1,54 @@
+// Place all the styles related to the spell_books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.level_heading {
+  border-bottom: solid black 1px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 1.5em;
+  padding: 5px 5px 5px 0px;
+}
+
+br.no_float {
+  clear: both;
+}
+
+.left_container {
+  float: left;
+}
+
+.right_container {
+  float: left;
+}
+
+.spell_prep_block {
+  font-size: 1em;
+  border: solid grey 1px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  padding: 5px;
+  width: 25em;
+  
+  .checkbox {
+    border: solid black 1px;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: top;
+  }
+  .name {
+    font-weight: bold;
+    display: inline-block;
+  }
+  .description {
+    font-size: 68%;
+    font-style: italic;
+    display: inline-block;
+    height: 1em;
+    
+  }
+  .components {
+    font-size: 100%;
+  }
+}

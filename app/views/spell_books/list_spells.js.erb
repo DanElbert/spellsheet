@@ -1,0 +1,4 @@
+
+$("#available_spells").html("<%= escape_javascript(render :partial => "available_spells", :locals => {:klass_spells => @available}) %>");
+
+$("#current_spells").html("<%= escape_javascript(render :partial => "current_spells", :locals => {:klass_spell_spell_books => @current, :spell_book => @spell_book}) %>");
