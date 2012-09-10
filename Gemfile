@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'activerecord-import'
 gem 'prawn_rails'
 gem "prawn", "0.12.0"
+gem 'capistrano'
+gem 'rvm-capistrano'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -32,9 +34,6 @@ gem 'jquery-rails'
 
 # Use unicorn as the app server
 # gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
