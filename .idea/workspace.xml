@@ -82,19 +82,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="20" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
+            <state line="2" column="19" selection-start="50" selection-end="50" vertical-scroll-proportion="0.042918455">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="deploy.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="deploy.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/deploy.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="10" selection-start="1065" selection-end="1065" vertical-scroll-proportion="0.7081545">
+            <state line="33" column="10" selection-start="1065" selection-end="1065" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -124,8 +124,8 @@
         <option value="$PROJECT_DIR$/app/views/libraries/spell_sheet/_spell.pdf.prawn" />
         <option value="$PROJECT_DIR$/app/views/libraries/spell_sheet.pdf.prawn" />
         <option value="$PROJECT_DIR$/Capfile" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/deploy.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -623,16 +623,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
+    <entry file="file://$PROJECT_DIR$/config/deploy.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="20" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
+        <state line="33" column="10" selection-start="1065" selection-end="1065" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/deploy.rb">
+    <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="10" selection-start="1065" selection-end="1065" vertical-scroll-proportion="0.7081545">
+        <state line="2" column="19" selection-start="50" selection-end="50" vertical-scroll-proportion="0.042918455">
           <folding />
         </state>
       </provider>
