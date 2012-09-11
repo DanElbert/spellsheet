@@ -9,8 +9,11 @@ gem 'sqlite3'
 gem 'activerecord-import'
 gem 'prawn_rails'
 gem "prawn", "0.12.0"
-gem 'capistrano'
-gem 'rvm-capistrano'
+
+group :deploy do
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.

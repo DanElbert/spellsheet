@@ -1,11 +1,9 @@
-require "bundler/capistrano"
 
 set :application, "spellsheet"
 
 # RVM Config
 set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :system
-require "rvm/capistrano"
 
 # Source code
 set :scm, :git
@@ -19,6 +17,9 @@ set :deploy_to, "/var/www-apps/#{application}"
 role :web, "azathoth"                          # Your HTTP server, Apache/etc
 role :app, "azathoth"                          # This may be the same as your `Web` server
 role :db,  "azathoth", :primary => true # This is where Rails migrations will run
+
+require "rvm/capistrano"
+require "bundler/capistrano"
 
 # if you want to clean up old releases on each deploy uncomment this:
 # after "deploy:restart", "deploy:cleanup"
