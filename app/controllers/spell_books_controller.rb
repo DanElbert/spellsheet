@@ -76,7 +76,7 @@ class SpellBooksController < ApplicationController
   end
   
   def add_spell
-    book = SpellBook.find(params[:id])
+    book = SpellBook.includes(:klass_spells).find(params[:id])
     spell = KlassSpell.find(params[:spell_id])
     unless book.klass_spells.include?(spell)
       book_spell = KlassSpellSpellBook.new()

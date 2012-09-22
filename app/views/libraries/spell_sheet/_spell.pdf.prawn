@@ -3,6 +3,7 @@ current_width = pdf.bounds.right - pdf.bounds.left
 padding = 3
 check_box_size = font_percent(75)
 check_box_gutter = 2
+title_font = "Arabian"
 
 # Also has klass_spell_spell_books var!!
 
@@ -24,11 +25,11 @@ pdf.bounding_box([0, pdf.cursor], :width => current_width, :height => spell_bloc
         end
 
         pdf.formatted_text_box [
-            { :text => "#{klass_spell.spell.name} ", :styles => [:bold], :size => base_font_size },
+            { :text => "#{klass_spell.spell.name} ", :styles => [], :size => font_percent(100), :font => title_font },
             { :text => "(#{klass_spell.spell.short_components}) ", :size => font_percent(80) } ,
             { :text => "#{klass_spell.spell.formatted_school}", :size => font_percent(75) }],
           :at => [(3 * (check_box_size + check_box_gutter)), top],
-          :height => base_font_size
+          :height => font_percent(150)
 
         pdf.formatted_text_box [
             { :text => "#{(klass_spell.spell.short_description || "").gsub(/^\s+/, "")}",

@@ -4,6 +4,10 @@ prawn_document() do |pdf|
     pdf.cursor - pdf.bounds.bottom
   end
 
+  pdf.font_families.update("Arabian" => {
+      :normal => Rails.root.to_s + "/lib/fonts/arabian.ttf"
+  })
+
   pdf.text "#{@library.name }", :size => font_percent(200)
   
   render "libraries/spell_sheet/memorization_block", :pdf => pdf
