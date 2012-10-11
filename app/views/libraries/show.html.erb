@@ -1,34 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @library.name %>
-</p>
+<h1><%= @library.name %></h1>
+<h2><%= @library.klass.name %></h2>
 
-<p>
-  <b>Class:</b>
-  <%= @library.klass.name %>
-</p>
-
-<p>
-  <b>Books</b>
-    <table>
+<b>Books</b>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Pages</th>
+    <th></th>
+  </tr>
+  <% @library.spell_books.each do |book| %>
       <tr>
-        <th>Name</th>
-        <th>Pages</th>
-        <th></th>
+        <td><%= link_to book.name, spell_book_path(book) %></td>
+        <td><%= book.formatted_pages %></td>
+        <td><%= link_to 'Remove', book, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
-      <% @library.spell_books.each do |book| %>
-          <tr>
-            <td><%= link_to book.name, spell_book_path(book) %></td>
-            <td><%= book.formatted_pages %></td>
-            <td><%= link_to 'Remove', book, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-          </tr>
-      <% end %>
-    </table>
-    <%= link_to "Add Book", new_spell_book_path(:library_id => @library.id), :method => :post %>
-</p>
+  <% end %>
+</table>
+<%= link_to "Add Book", new_spell_book_path(:library_id => @library.id), :method => :post %>
+<br/><br/>
 
-<%= link_to 'Spell Sheet', spell_sheet_library_path(@library) %> |
+<%= link_to 'Print Spell Sheet', spell_sheet_library_path(@library) %>
+<br/><br/>
 <%= link_to 'Edit', edit_library_path(@library) %> |
 <%= link_to 'Back', libraries_path %>
