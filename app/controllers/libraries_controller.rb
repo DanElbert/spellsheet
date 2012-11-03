@@ -84,7 +84,7 @@ class LibrariesController < ApplicationController
   def spell_sheet
     @library = Library.includes(:spell_books => {:klass_spells => :spell}).find(params[:id])
 
-    spells = KlassSpellSpellBook.joins(:spell_book, {:klass_spell => :spell}).where(["library_id = :lib_id", {:lib_id => 1}]).includes(:spell_book, :klass_spell => {:spell => :school}).order("level, spells.name")
+    spells = KlassSpellSpellBook.joins(:spell_book, {:klass_spell => :spell}).where(["library_id = :lib_id", {:lib_id => @library.id}]).includes(:spell_book, :klass_spell => {:spell => :school}).order("level, spells.name")
 
     @spell_levels = spells.reduce({}) do |memo, kssb|
       ks = kssb.klass_spell

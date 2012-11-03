@@ -4,7 +4,7 @@ padding = 3
 check_box_size = font_percent(75)
 check_box_gutter = 2
 title_font = "Arabian"
-
+sub_resources
 # Also has klass_spell_spell_books var!!
 
 pdf.bounding_box([0, pdf.cursor], :width => current_width, :height => spell_block_height) do
