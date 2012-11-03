@@ -5,7 +5,7 @@ pdf.pad_top(20) do
   pdf.font_size base_font_size do
     @library.spell_books.each do |sb|
 
-      pdf.text "#{sb.name} (#{sb.klass.name})"
+      pdf.text "#{sb.name} [#{sb.formatted_pages}]"
 
       pdf.indent(tab) do
         level = -1
