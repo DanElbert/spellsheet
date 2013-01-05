@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c073cc9c-bc1c-484d-ae2a-4f5c5e215a58" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.rvmrc" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/spellsheet.iml" afterPath="$PROJECT_DIR$/.idea/spellsheet.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/libraries/spell_sheet/_spell.pdf.prawn" afterPath="$PROJECT_DIR$/app/views/libraries/spell_sheet/_spell.pdf.prawn" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
     </list>
     <ignored path="spellsheet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,10 +42,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_spell.pdf.prawn" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="_spell.pdf.prawn" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/libraries/spell_sheet/_spell.pdf.prawn">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="94" selection-start="911" selection-end="911" vertical-scroll-proportion="0.54698455">
+            <state line="26" column="94" selection-start="911" selection-end="911" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="deploy.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/deploy.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="20" selection-start="936" selection-end="936" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="11" selection-start="167" selection-end="167" vertical-scroll-proportion="0.1734104">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile.lock" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="69" column="4" selection-start="1656" selection-end="1656" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -74,6 +98,11 @@
       </file>
     </leaf>
   </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -88,7 +117,6 @@
         <option value="$PROJECT_DIR$/app/views/libraries/spell_sheet/_spell_book_summary.pdf.prawn" />
         <option value="$PROJECT_DIR$/Capfile" />
         <option value="$PROJECT_DIR$/config/deploy.rb" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/app/views/menu/index.html.erb" />
@@ -96,6 +124,7 @@
         <option value="$PROJECT_DIR$/app/views/libraries/spell_sheet.pdf.prawn" />
         <option value="$PROJECT_DIR$/app/controllers/libraries_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/libraries/spell_sheet/_spell.pdf.prawn" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -177,6 +206,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="fonts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spellsheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spellsheet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -599,16 +642,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Capfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="65" selection-end="65" vertical-scroll-proportion="0.04418262" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="11" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/environments/test.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -643,13 +676,6 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/libraries_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="86" column="132" selection-start="2247" selection-end="2247" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/deploy.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="255" selection-end="255" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -694,7 +720,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/libraries/spell_sheet/_spell.pdf.prawn">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="94" selection-start="911" selection-end="911" vertical-scroll-proportion="0.54698455">
+        <state line="26" column="94" selection-start="911" selection-end="911" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/deploy.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="20" selection-start="936" selection-end="936" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="4" selection-start="1656" selection-end="1656" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="11" selection-start="167" selection-end="167" vertical-scroll-proportion="0.1734104">
           <folding />
         </state>
       </provider>
