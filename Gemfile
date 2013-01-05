@@ -2,11 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.10'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'sqlite3'
-gem 'mysql'
+gem 'mysql2'
 gem 'activerecord-import'
 gem 'prawn_rails'
 gem "prawn", "0.12.0"
