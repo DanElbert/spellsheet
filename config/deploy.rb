@@ -9,7 +9,6 @@ set :rvm_type, :system
 set :scm, :git
 set :repository, "git@github.com:DanElbert/spellsheet.git"
 set :branch, "master"
-set :ssh_options, { :forward_agent => true }
 
 # Web Server Config
 set :deploy_to, "/var/www-apps/#{application}"
