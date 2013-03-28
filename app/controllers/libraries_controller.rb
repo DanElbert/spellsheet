@@ -97,5 +97,11 @@ class LibrariesController < ApplicationController
       memo[ks.level] = spell_hash
       memo
     end
+
+    respond_to do |format|
+      format.html {}
+      format.pdf {}
+    end
+
   end
 end

@@ -22,6 +22,7 @@
 <br/><br/>
 
 <%= link_to 'Print Spell Sheet', spell_sheet_library_path(@library) %>
+<%= link_to 'View Spell Sheet', spell_sheet_library_path(@library, :format => :html) %>
 <br/><br/>
 <%= link_to 'Edit', edit_library_path(@library) %> |
 <%= link_to 'Back', libraries_path %>
