@@ -20,15 +20,10 @@
 <% end %>
 </table>
 
-<div id="spell_dialog">
-  <div id="spell_content"></div>
-</div>
+<%= render :partial => 'shared/spell_dialog' %>
 
 <script type="text/javascript">
 $(".action_link").bind('ajax:complete', function() {
   $("#spell_filter_form").submit();
 });
-
-$("#spell_dialog").dialog({width: "600px", autoOpen: false});
-
 </script>
