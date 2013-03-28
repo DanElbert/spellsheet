@@ -5,6 +5,9 @@ set :application, "spellsheet"
 set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :system
 
+# Asset Compilation
+set :asset_env, "#{asset_env} RAILS_RELATIVE_URL_ROOT=/spellsheet"
+
 # Source code
 set :scm, :git
 set :repository, "git@github.com:DanElbert/spellsheet.git"
