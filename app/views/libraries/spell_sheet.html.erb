@@ -18,7 +18,7 @@
         <input type="checkbox" />
         <input type="checkbox" />
         <input type="checkbox" />
-        <span class="spell_name"><%= spell.name %></span>
+        <span class="spell_name" <%= known ? '' : "class='unknown'" %>><%= link_to spell.name, spell, :remote => true %></span>
         <span class="spell_components">(<%= spell.short_components %>)</span>
         <span class="spell_school"><%= spell.formatted_school %></span><br/>
         <span class="spell_description"><%= spell.short_description %></span>
@@ -70,3 +70,4 @@
   <% end %>
 </ul>
 
+<%= render :partial => 'shared/spell_dialog' %>
