@@ -14,11 +14,13 @@
       <% spell = klass_spell.spell %>
       <% known = spell_hash[klass_spell].detect { |sb| sb.is_learned } %>
 
-      <div class="memorization_spell">
+      <% puts "#{spell.name}, #{known}" %>
+
+      <div class="memorization_spell <%= known ? '' : raw("unknown") %>">
         <input type="checkbox" />
         <input type="checkbox" />
         <input type="checkbox" />
-        <span class="spell_name" <%= known ? '' : "class='unknown'" %>><%= link_to spell.name, spell, :remote => true %></span>
+        <span class="spell_name"><%= link_to spell.name, spell, :remote => true %></span>
         <span class="spell_components">(<%= spell.short_components %>)</span>
         <span class="spell_school"><%= spell.formatted_school %></span><br/>
         <span class="spell_description"><%= spell.short_description %></span>
@@ -38,8 +40,6 @@
     <%
       book_klass_spells = spell_book.klass_spell_spell_books.reduce({}) do  |memo, book_klass_spell|
         list = memo[book_klass_spell.klass_spell.level]
-        puts "==========================="
-        puts list
         list ||= []
         list << book_klass_spell
         memo[book_klass_spell.klass_spell.level] = list

@@ -20,6 +20,10 @@
   overflow: hidden;
 }
 
+.memorization_spell.unknown, .memorization_spell.unknown a {
+  color: lightgray;
+}
+
 .memorization_spell input[type='checkbox'] {
   padding: 0px;
   margin: 0px;
