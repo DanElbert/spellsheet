@@ -14,8 +14,6 @@
       <% spell = klass_spell.spell %>
       <% known = spell_hash[klass_spell].detect { |sb| sb.is_learned } %>
 
-      <% puts "#{spell.name}, #{known}" %>
-
       <div class="memorization_spell <%= known ? '' : raw("unknown") %>">
         <input type="checkbox" />
         <input type="checkbox" />
