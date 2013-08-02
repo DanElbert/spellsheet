@@ -2,7 +2,7 @@
 set :application, "spellsheet"
 
 # RVM Config
-set :rvm_ruby_string, '1.9.3'
+set :rvm_ruby_string, '1.9.3-p194'
 set :rvm_type, :system
 
 # Asset Compilation
