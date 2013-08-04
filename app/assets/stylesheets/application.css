@@ -9,32 +9,35 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require jquery.ui.all
+ *= require base
+ *= require layout
+ *= require skeleton
  *= require_self
  *= require_tree .
  */
 
 
-table {
-    font-size:11px;
-    color:#333333;
-    border-width: 1px;
-    border-color: #666666;
-    border-collapse: collapse;
-}
-table th {
-    border-width: 1px;
-    padding: 8px;
-    border-style: solid;
-    border-color: #666666;
-    background-color: #dedede;
-}
-table td {
-    border-width: 1px;
-    padding: 8px;
-    border-style: solid;
-    border-color: #666666;
-    background-color: #ffffff;
-}
+/*table {*/
+    /*font-size:11px;*/
+    /*color:#333333;*/
+    /*border-width: 1px;*/
+    /*border-color: #666666;*/
+    /*border-collapse: collapse;*/
+/*}*/
+/*table th {*/
+    /*border-width: 1px;*/
+    /*padding: 8px;*/
+    /*border-style: solid;*/
+    /*border-color: #666666;*/
+    /*background-color: #dedede;*/
+/*}*/
+/*table td {*/
+    /*border-width: 1px;*/
+    /*padding: 8px;*/
+    /*border-style: solid;*/
+    /*border-color: #666666;*/
+    /*background-color: #ffffff;*/
+/*}*/
 
 .fixed-dialog{
     position: fixed;

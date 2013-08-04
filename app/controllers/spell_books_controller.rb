@@ -53,7 +53,7 @@ class SpellBooksController < ApplicationController
 
     respond_to do |format|
       if @spell_book.update_attributes(params[:spell_book])
-        format.html { redirect_to @spell_book, notice: 'Spell book was successfully updated.' }
+        format.html { redirect_to @spell_book.library, notice: 'Spell book was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

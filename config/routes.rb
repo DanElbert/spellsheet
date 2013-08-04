@@ -19,7 +19,7 @@ Spellsheet::Application.routes.draw do
 
   resources :spells, :only => [:index, :show]
   
-  root :to => 'menu#index'
+  root :to => 'libraries#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

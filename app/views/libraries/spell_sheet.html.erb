@@ -1,13 +1,13 @@
 
-<h1><%= @library.name %></h1>
+<h2><%= @library.name %></h2>
 
-<h2>Memorization Block</h2>
+<h3>Memorization Block</h3>
 
 <% @spell_levels.each do |level, spell_hash| %>
 
   <% spells = spell_hash.keys %>
 
-  <h3>Level <%= level %></h3>
+  <h4>Level <%= level %></h4>
   <div class="memorization_block">
 
     <% spells.each do |klass_spell| %>
@@ -30,7 +30,7 @@
   </div>
 <% end %>
 
-<h2>Library Overview</h2>
+<h3>Library Overview</h3>
 
 <ul id="library_summary">
   <% @library.spell_books.each do |spell_book| %>

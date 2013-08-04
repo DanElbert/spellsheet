@@ -27,6 +27,8 @@ end
 gem 'jquery-rails', '2.2.1'
 gem 'jquery-ui-rails', '4.0.2'
 
+gem 'skeleton-rails'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

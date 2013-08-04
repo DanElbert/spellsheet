@@ -1,12 +1,11 @@
-<p id="notice"><%= notice %></p>
 
-<h1><%= @spell_book.library.name %></h1>
-<h2><%= @spell_book.name %></h2>
+<h2><%= @spell_book.library.name %></h2>
+<h3><%= @spell_book.name %></h3>
 
-<br />
-<h2>Add Spell</h2>
+<h4>Add Spell</h4>
 <%= form_tag list_spells_spell_book_path(@spell_book), :remote => true, :id => "spell_filter_form" do %>
-  Level <%= select(:spell_filter, :level, @levels) %>
+  <%= label_tag "Level" %>
+  <%= select(:spell_filter, :level, @levels) %>
 <% end %>
 
 <%= form_tag add_spell_spell_book_path(@spell_book), :remote => true, :id => "available_spells_form" do %>
@@ -15,13 +14,11 @@
   <%= submit_tag "Add" %>
 <% end %>
 
-<br />
-<h2>Current Spells</h2>
+<h4>Current Spells</h4>
 <div id="current_spells"></div>
 <br />
 
-<%= link_to 'Edit', edit_spell_book_path(@spell_book) %> |
-<%= link_to 'Back', library_path(@spell_book.library_id) %>
+<%= link_to 'Back to Library', library_path(@spell_book.library_id) %>
 
 <script type="text/javascript">
   $(document).ready(function() {

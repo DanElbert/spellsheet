@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :klass_id %><br />
+    <%= f.label :klass_id, "Class" %>
     <%= select(:library, :klass_id, Klass.order("name").all.collect { |k| [k.name, k.id] }) %>
   </div>
   <div class="actions">
