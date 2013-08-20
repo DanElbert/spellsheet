@@ -1,0 +1,42 @@
+
+#spellsheet {
+
+}
+
+.level_header {
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+}
+
+.memorization_spell {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 12pt;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 4px;
+  height: 60px;
+  overflow: hidden;
+}
+
+.memorization_spell.unknown, .memorization_spell.unknown a {
+  color: lightgray;
+}
+
+.memorization_spell input[type='checkbox'] {
+  padding: 0px;
+  margin: 0px;
+}
+
+.memorization_spell .spell_description {
+  font-style: italic;
+  font-size: 75%;
+  line-height: normal;
+}
+
+.memorization_spell .spell_components {
+  font-size: 80%;
+}
+
+.memorization_spell .spell_school {
+  font-size: 75%;
+}

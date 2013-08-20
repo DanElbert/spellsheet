@@ -1,71 +1,71 @@
+<div id="spellsheet" class="row">
+  <h2><%= @library.name %></h2>
 
-<h2><%= @library.name %></h2>
+  <h3>Memorization Block</h3>
 
-<h3>Memorization Block</h3>
+  <% @spell_levels.each do |level, spell_hash| %>
 
-<% @spell_levels.each do |level, spell_hash| %>
+    <% spells = spell_hash.keys %>
 
-  <% spells = spell_hash.keys %>
+    <div class="sixteen columns alpha level_header"><h4>Level <%= level %></h4></div>
 
-  <h4>Level <%= level %></h4>
-  <div class="memorization_block">
+      <% spells.each do |klass_spell| %>
+        <% spell = klass_spell.spell %>
+        <% known = spell_hash[klass_spell].detect { |sb| sb.is_learned } %>
 
-    <% spells.each do |klass_spell| %>
-      <% spell = klass_spell.spell %>
-      <% known = spell_hash[klass_spell].detect { |sb| sb.is_learned } %>
-
-      <div class="memorization_spell <%= known ? '' : raw("unknown") %>">
-        <input type="checkbox" />
-        <input type="checkbox" />
-        <input type="checkbox" />
-        <span class="spell_name"><%= link_to spell.name, spell, :remote => true %></span>
-        <span class="spell_components">(<%= spell.short_components %>)</span>
-        <span class="spell_school"><%= spell.formatted_school %></span><br/>
-        <span class="spell_description"><%= spell.short_description %></span>
-      </div>
-
-    <% end %>
-    <br style="clear: both"/>
-
-  </div>
-<% end %>
-
-<h3>Library Overview</h3>
-
-<ul id="library_summary">
-  <% @library.spell_books.each do |spell_book| %>
-
-    <%
-      book_klass_spells = spell_book.klass_spell_spell_books.reduce({}) do  |memo, book_klass_spell|
-        list = memo[book_klass_spell.klass_spell.level]
-        list ||= []
-        list << book_klass_spell
-        memo[book_klass_spell.klass_spell.level] = list
-        memo
-      end
-    %>
-
-    <li class="book">
-      <%= "#{spell_book.name} [#{spell_book.formatted_pages}]" %>
-      <ul>
-      <% book_klass_spells.keys.sort.each do |level| %>
-        <% book_klass_spells_per_level = book_klass_spells[level].sort { |a, b| a.klass_spell.spell.name <=> b.klass_spell.spell.name } %>
-        <li>
-          Level <%= level %>
-          <ul>
-            <% book_klass_spells_per_level.each do |book_klass_spell| %>
-              <li>
-                <%= book_klass_spell.klass_spell.spell.name %>
-              </li>
-            <% end %>
-          </ul>
-        </li>
-
-
+        <div class="four columns">
+          <div class="memorization_spell <%= known ? '' : raw("unknown") %>">
+            <input type="checkbox" />
+            <input type="checkbox" />
+            <input type="checkbox" />
+            <span class="spell_name"><%= link_to spell.name, spell, :remote => true %></span>
+            <span class="spell_components">(<%= spell.short_components %>)</span>
+            <span class="spell_school"><%= spell.formatted_school %></span><br/>
+            <span class="spell_description"><%= spell.short_description %></span>
+          </div>
+        </div>
       <% end %>
-      </ul>
-    </li>
   <% end %>
-</ul>
+  <br class="clear" />
 
-<%= render :partial => 'shared/spell_dialog' %>
+  <h3>Library Overview</h3>
+
+  <ul id="library_summary">
+    <% @library.spell_books.each do |spell_book| %>
+
+      <%
+        book_klass_spells = spell_book.klass_spell_spell_books.reduce({}) do  |memo, book_klass_spell|
+          list = memo[book_klass_spell.klass_spell.level]
+          list ||= []
+          list << book_klass_spell
+          memo[book_klass_spell.klass_spell.level] = list
+          memo
+        end
+      %>
+
+      <li class="book">
+        <%= "#{spell_book.name} [#{spell_book.formatted_pages}]" %>
+        <ul>
+        <% book_klass_spells.keys.sort.each do |level| %>
+          <% book_klass_spells_per_level = book_klass_spells[level].sort { |a, b| a.klass_spell.spell.name <=> b.klass_spell.spell.name } %>
+          <li>
+            Level <%= level %>
+            <ul>
+              <% book_klass_spells_per_level.each do |book_klass_spell| %>
+                <li>
+                  <%= book_klass_spell.klass_spell.spell.name %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+
+
+        <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= render :partial => 'shared/spell_dialog' %>
+
+</div>
