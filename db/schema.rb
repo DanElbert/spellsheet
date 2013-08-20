@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120906014634) do
+ActiveRecord::Schema.define(:version => 20130820224955) do
 
   create_table "klass_spells", :force => true do |t|
     t.integer  "klass_id"
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(:version => 20120906014634) do
     t.integer  "klass_spell_id"
     t.integer  "spell_book_id"
     t.boolean  "is_learned"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "number_memorized"
   end
 
   create_table "klasses", :force => true do |t|

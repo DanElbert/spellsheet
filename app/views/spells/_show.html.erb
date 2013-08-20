@@ -1,25 +1,27 @@
-<h1><%= @spell.name %></h1>
+<div class="detailed_spell_block">
+  <h1><%= @spell.name %></h1>
 
-<strong>School</strong> <%= @spell.formatted_school %>;
+  <strong>School</strong> <%= @spell.formatted_school %>;
 
-<% klasses = @spell.klass_spells.joins(:klass).order("klasses.name") %>
+  <% klasses = @spell.klass_spells.joins(:klass).order("klasses.name") %>
 
-<strong>Level</strong> <%= klasses.map { |ks| "#{ks.klass.name} #{ks.level}" }.join(", ") %>
+  <strong>Level</strong> <%= klasses.map { |ks| "#{ks.klass.name} #{ks.level}" }.join(", ") %>
 
-<h2>CASTING</h2>
+  <h2>CASTING</h2>
 
-<strong>Casting Time</strong> <%= @spell.casting_time %><br />
-<strong>Components</strong> <%= @spell.components %><br />
+  <strong>Casting Time</strong> <%= @spell.casting_time %><br />
+  <strong>Components</strong> <%= @spell.components %><br />
 
-<h2>EFFECT</h2>
+  <h2>EFFECT</h2>
 
-<%= effect_block("Range", @spell.range) %>
-<%= effect_block("Area", @spell.formatted_area) %>
-<%= effect_block("Target", @spell.targets) %>
-<%= effect_block("Effect", @spell.effect) %>
-<%= effect_block("Duration", @spell.formatted_duration) %>
-<%= effect_block("Saving Throw", "#{@spell.saving_throw}; <strong>Spell Resistance</strong> #{@spell.spell_resistence}") %>
+  <%= effect_block("Range", @spell.range) %>
+  <%= effect_block("Area", @spell.formatted_area) %>
+  <%= effect_block("Target", @spell.targets) %>
+  <%= effect_block("Effect", @spell.effect) %>
+  <%= effect_block("Duration", @spell.formatted_duration) %>
+  <%= effect_block("Saving Throw", "#{@spell.saving_throw}; <strong>Spell Resistance</strong> #{@spell.spell_resistence}") %>
 
-<h2>DESCRIPTION</h2>
+  <h2>DESCRIPTION</h2>
 
-<%= @spell.description %>
+  <%= @spell.description %>
+</div>

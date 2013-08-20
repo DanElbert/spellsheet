@@ -1,32 +1,19 @@
-<div id="spellsheet" class="row">
+<div id="spellsheet">
   <h2><%= @library.name %></h2>
 
-  <h3>Memorization Block</h3>
-
-  <% @spell_levels.each do |level, spell_hash| %>
-
-    <% spells = spell_hash.keys %>
-
-    <div class="sixteen columns alpha level_header"><h4>Level <%= level %></h4></div>
-
-      <% spells.each do |klass_spell| %>
-        <% spell = klass_spell.spell %>
-        <% known = spell_hash[klass_spell].detect { |sb| sb.is_learned } %>
-
-        <div class="four columns">
-          <div class="memorization_spell <%= known ? '' : raw("unknown") %>">
-            <input type="checkbox" />
-            <input type="checkbox" />
-            <input type="checkbox" />
-            <span class="spell_name"><%= link_to spell.name, spell, :remote => true %></span>
-            <span class="spell_components">(<%= spell.short_components %>)</span>
-            <span class="spell_school"><%= spell.formatted_school %></span><br/>
-            <span class="spell_description"><%= spell.short_description %></span>
-          </div>
-        </div>
-      <% end %>
+  <% if @mode == 'memorizing' %>
+    <%= link_to 'Memorizing', spell_sheet_library_path(@library, :format => :html, :mode => 'casting'), :class => 'button' %>
+  <% else %>
+    <%= link_to 'Casting', spell_sheet_library_path(@library, :format => :html, :mode => 'memorizing'), :class => 'button' %>
   <% end %>
-  <br class="clear" />
+
+  <div id="memorization_block_container">
+    <% if @mode == 'memorizing' %>
+      <%= render partial: 'learning_memorization_block' %>
+    <% else %>
+      <%= render partial: 'casting_memorization_block' %>
+    <% end %>
+  </div>
 
   <h3>Library Overview</h3>
 

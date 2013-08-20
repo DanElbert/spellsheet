@@ -82,11 +82,46 @@ class LibrariesController < ApplicationController
   end
 
   def spell_sheet
+    @mode = params[:mode] || 'memorizing'
     @library = Library.includes(:spell_books => {:klass_spells => :spell}).find(params[:id])
 
-    spells = KlassSpellSpellBook.joins(:spell_book, {:klass_spell => :spell}).where(["library_id = :lib_id", {:lib_id => @library.id}]).includes(:spell_book, :klass_spell => {:spell => :school}).order("level, spells.name")
+    @spell_levels = build_spell_hash(@library, @mode)
 
-    @spell_levels = spells.reduce({}) do |memo, kssb|
+    respond_to do |format|
+      format.html { render layout: 'minimal' }
+      format.pdf {}
+    end
+
+  end
+
+  def cast_spell
+    @mode = params[:mode]
+
+    kssb = KlassSpellSpellBook.find(params[:kssb_id])
+    kssb.number_memorized ||= 0
+    kssb.number_memorized -= 1
+    kssb.save!
+
+    @library = Library.includes(:spell_books => {:klass_spells => :spell}).find(params[:id])
+    @spell_levels = build_spell_hash(@library, @mode)
+  end
+
+  def memorize_spell
+    @mode = params[:mode]
+
+    kssb = KlassSpellSpellBook.find(params[:kssb_id])
+    kssb.number_memorized ||= 0
+    kssb.number_memorized += 1
+    kssb.save!
+
+    @library = Library.includes(:spell_books => {:klass_spells => :spell}).find(params[:id])
+    @spell_levels = build_spell_hash(@library, @mode)
+  end
+
+  def build_spell_hash(library, mode)
+    spells = KlassSpellSpellBook.joins(:spell_book, {:klass_spell => :spell}).where(["library_id = :lib_id", {:lib_id => library.id}]).includes(:spell_book, :klass_spell => {:spell => :school}).order("level, spells.name")
+
+    spell_levels = spells.reduce({}) do |memo, kssb|
       ks = kssb.klass_spell
       spell_hash = memo[ks.level] || {ks => []}
 
@@ -98,10 +133,6 @@ class LibrariesController < ApplicationController
       memo
     end
 
-    respond_to do |format|
-      format.html {}
-      format.pdf {}
-    end
-
+    spell_levels
   end
 end

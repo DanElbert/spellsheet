@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="pathfinder spell management">
+  <meta name="author" content="Dan Elbert">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Spellsheet</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+
+  <%= yield :header %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="minimal_content">
+  <%= yield %>
+</div>
+
+</body>
+</html>

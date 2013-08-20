@@ -1,0 +1,34 @@
+
+<% @spell_levels.each do |level, spell_hash| %>
+
+  <% spells = spell_hash.keys %>
+
+  <div class="level_header"><h4>Level <%= level %></h4></div>
+
+  <% spells.each do |klass_spell| %>
+    <% spell = klass_spell.spell %>
+    <% known = spell_hash[klass_spell].detect { |sb| sb.is_learned } %>
+
+
+    <div class="memorization_spell <%= known ? '' : raw("unknown") %>">
+      <%= form_tag memorize_spell_library_path(@library), :remote => true do |f| %>
+        <%= hidden_field_tag 'kssb_id', kssb.id %>
+        <%= submit_tag "+", :class => 'button' %>
+      <% end %>
+      <%= kssb.number_memorized || 0 %>
+      <%= form_tag cast_spell_library_path(@library), :remote => true do |f| %>
+        <%= hidden_field_tag 'kssb_id', kssb.id %>
+        <%= submit_tag "-", :class => 'button' %>
+      <% end %>
+
+      <input type="checkbox" />
+      <input type="checkbox" />
+      <input type="checkbox" />
+      <span class="spell_name"><%= link_to spell.name, spell, :remote => true %></span>
+      <span class="spell_components">(<%= spell.short_components %>)</span>
+      <span class="spell_school"><%= spell.formatted_school %></span><br/>
+      <span class="spell_description"><%= spell.short_description %></span>
+    </div>
+  <% end %>
+  <br class="clear" />
+<% end %>

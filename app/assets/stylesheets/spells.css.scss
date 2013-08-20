@@ -1,3 +1,24 @@
 // Place all the styles related to the Spells controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ui-widget .detailed_spell_block {
+}
+
+div.detailed_spell_block {
+  font-size: 10pt;
+}
+
+div.detailed_spell_block h1 {
+  font-size: 3em;
+  line-height: 40px;
+  margin-top: 5px;
+  margin-bottom: 5px
+}
+
+div.detailed_spell_block h2 {
+  font-size: 2em;
+  line-height: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px
+}
