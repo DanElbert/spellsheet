@@ -1,0 +1,24 @@
+
+<% @spells.get_levels.each do |level| %>
+
+  <% spells = @spells.get_spells_by_level(level, true) %>
+
+  <div class="level_header"><h4>Level <%= level %></h4></div>
+
+  <% spells.each do |kssb| %>
+    <%= render partial: 'libraries/spell_sheet/spell', locals: {kssb: kssb} %>
+  <% end %>
+  <br class="clear" />
+<% end %>
+
+<% @spells.get_levels.each do |level| %>
+
+  <% spells = @spells.get_spells_by_level(level, false) %>
+
+  <div class="level_header"><h4>Level <%= level %></h4></div>
+
+  <% spells.each do |kssb| %>
+    <%= render partial: 'libraries/spell_sheet/spell', locals: {kssb: kssb} %>
+  <% end %>
+  <br class="clear" />
+<% end %>

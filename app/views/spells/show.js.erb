@@ -1,5 +1,21 @@
 
-$("#spell_dialog").attr("title", "<%= @spell.name %>");
-$("#spell_content").html("<%= escape_javascript(render :partial => "show.html") %>");
+(function($) {
 
-$("#spell_dialog").dialog("open");
+  var defaultWidth = 600;
+  var viewPortWidth = $(document).width() - 10;
+  var viewPortHeight = $(document).height() - 10;
+
+  var dialog = $("#spell_dialog");
+  var content = $("#spell_content");
+
+  if (viewPortWidth < defaultWidth) {
+    dialog.dialog("option", "width", viewPortWidth + "px");
+  }
+
+  dialog.dialog("option", "maxHeight", viewPortHeight + "px");
+
+  dialog.attr("title", "<%= @spell.name %>");
+  content.html("<%= escape_javascript(render :partial => "show.html") %>");
+
+  dialog.dialog("open");
+})(jQuery);
