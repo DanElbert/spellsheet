@@ -83,9 +83,8 @@ class LibrariesController < ApplicationController
 
   def spell_sheet
     @mode = params[:mode] || 'memorizing'
-    @library = Library.includes(:spell_books => {:klass_spells => :spell}).find(params[:id])
-
-    @spell_levels = build_spell_hash(@library, @mode)
+    @library = Library.includes(:spell_books => {:klass_spell_spell_books => {:klass_spell => :spell}}).find(params[:id])
+    @spells = ViewModels::LibrarySpellList.new(@library)
 
     respond_to do |format|
       format.html { render layout: 'minimal' }
@@ -102,8 +101,10 @@ class LibrariesController < ApplicationController
     kssb.number_memorized -= 1
     kssb.save!
 
-    @library = Library.includes(:spell_books => {:klass_spells => :spell}).find(params[:id])
-    @spell_levels = build_spell_hash(@library, @mode)
+    @library = Library.includes(:spell_books => {:klass_spell_spell_books => {:klass_spell => :spell}}).find(params[:id])
+    @spells = ViewModels::LibrarySpellList.new(@library)
+
+    render 'update_memorization_block'
   end
 
   def memorize_spell
@@ -114,25 +115,9 @@ class LibrariesController < ApplicationController
     kssb.number_memorized += 1
     kssb.save!
 
-    @library = Library.includes(:spell_books => {:klass_spells => :spell}).find(params[:id])
-    @spell_levels = build_spell_hash(@library, @mode)
-  end
+    @library = Library.includes(:spell_books => {:klass_spell_spell_books => {:klass_spell => :spell}}).find(params[:id])
+    @spells = ViewModels::LibrarySpellList.new(@library)
 
-  def build_spell_hash(library, mode)
-    spells = KlassSpellSpellBook.joins(:spell_book, {:klass_spell => :spell}).where(["library_id = :lib_id", {:lib_id => library.id}]).includes(:spell_book, :klass_spell => {:spell => :school}).order("level, spells.name")
-
-    spell_levels = spells.reduce({}) do |memo, kssb|
-      ks = kssb.klass_spell
-      spell_hash = memo[ks.level] || {ks => []}
-
-      spell_hash[ks] = [] unless spell_hash[ks]
-
-      spell_hash[ks] << kssb
-
-      memo[ks.level] = spell_hash
-      memo
-    end
-
-    spell_levels
+    render 'update_memorization_block'
   end
 end

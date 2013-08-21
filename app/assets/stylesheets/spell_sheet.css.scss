@@ -43,3 +43,17 @@
 .memorization_spell .spell_school {
   font-size: 75%;
 }
+
+.memorization_spell form {
+  float: left;
+  display: block;
+  margin: 0;
+  border: none;
+}
+
+.memorization_spell form input {
+  display: block;
+  margin: 0;
+  height: 25px;
+  padding: 2px 4px;
+}

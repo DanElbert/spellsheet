@@ -1,0 +1,7 @@
+
+<%
+  partial = 'learning_memorization_block'
+  partial = 'casting_memorization_block' if @mode == 'casting'
+%>
+
+$("#memorization_block_container").html("<%= escape_javascript(render :partial => partial) %>");
