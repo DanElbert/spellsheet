@@ -22,3 +22,11 @@ div.detailed_spell_block h2 {
   margin-top: 5px;
   margin-bottom: 5px
 }
+
+fieldset.class_associations {
+  input[type='text'] {
+    width: 25px;
+    display: inline;
+    margin-bottom: 2px;
+  }
+}

@@ -44,8 +44,20 @@
   font-size: 75%;
 }
 
-.memorization_spell form {
+div.number_memorized_block {
   float: left;
+  width: 25px;
+}
+
+div.number_memorized {
+}
+
+div.spell_details {
+  float: left;
+  width: 305px;
+}
+
+.memorization_spell form {
   display: block;
   margin: 0;
   border: none;
@@ -54,6 +66,7 @@
 .memorization_spell form input {
   display: block;
   margin: 0;
-  height: 25px;
-  padding: 2px 4px;
+  height: 20px;
+  width: 15px;
+  padding: 0 4px;
 }

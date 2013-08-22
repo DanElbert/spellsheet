@@ -98,7 +98,7 @@ class LibrariesController < ApplicationController
 
     kssb = KlassSpellSpellBook.find(params[:kssb_id])
     kssb.number_memorized ||= 0
-    kssb.number_memorized -= 1
+    kssb.number_memorized -= 1 if kssb.number_memorized > 0
     kssb.save!
 
     @library = Library.includes(:spell_books => {:klass_spell_spell_books => {:klass_spell => :spell}}).find(params[:id])

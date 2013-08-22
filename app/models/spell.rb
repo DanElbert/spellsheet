@@ -1,7 +1,24 @@
 class Spell < ActiveRecord::Base
-  
-  has_many :klass_spells
+  include NormalizeBlanks
+
+  attr_accessible :name, :school_id, :subschool, :descriptor, :casting_time, :components, :verbal, :somatic, :material, :focus, :divine_focus, :costly_components, :dismissible, :shapeable, :short_description, :range, :area, :effect, :targets, :duration, :saving_throw, :spell_resistence, :source, :description
+
+  has_many :klass_spells, inverse_of: :spell, dependent: :destroy
   belongs_to :school
+
+  def level_for_klass(klass)
+    ks = klass_spells.detect { |klass_spell| klass_spell.klass_id == klass.id }
+    ks ? ks.level : nil
+  end
+
+  def klass_level_for_klass(klass_id)
+    klass_spells.detect { |klass_spell| klass_spell.klass_id == klass_id }
+  end
+
+  def remove_klass(klass_id)
+    ks = klass_spells.detect { |klass_spell| klass_spell.klass_id == klass_id }
+    klass_spells.delete(ks) if ks
+  end
   
   def short_components
     types = []

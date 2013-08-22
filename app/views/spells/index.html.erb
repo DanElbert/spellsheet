@@ -1,4 +1,7 @@
 
+<%= link_to "New Spell", new_spell_path %>
+<br /><br/>
+
 <table>
 <tr>
   <td>Name</td>
@@ -7,6 +10,7 @@
 
   <tr>
     <td><%= link_to spell.name, spell %></td>
+    <td><%= link_to 'Edit', edit_spell_path(spell) %></td>
   </tr>
 
 <% end %>

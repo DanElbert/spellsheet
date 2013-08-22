@@ -1,0 +1,72 @@
+<% schools = School.where(id: Spell.select(:school_id)).order(:name) %>
+<% klasses = Klass.order(:name) %>
+
+<%= render partial: 'shared/error_list', locals: {model: @spell} %>
+
+<%= form_for @spell, builder: SpellFormBuilder do |f| %>
+
+  <%= f.text_input :name %>
+
+  <%= f.label :school %>
+  <%= f.select(:school_id, options_from_collection_for_select(schools, :id, :name)) %>
+
+  <fieldset class="class_associations">
+    <legend>Class Associations</legend>
+
+    <% klasses.each do |klass| %>
+      <label>
+        <%= text_field_tag("klasses[#{klass.id}]", @spell.level_for_klass(klass)) %>
+        <span><%= klass.name %></span>
+      </label>
+    <% end %>
+  </fieldset>
+
+  <%= f.text_input :subschool %>
+
+  <%= f.text_input :descriptor %>
+
+  <%= f.text_input :casting_time %>
+
+  <%= f.text_input :components, "Specific Components" %>
+
+  <fieldset>
+    <legend>Components</legend>
+
+    <%= f.check_input(:verbal) %>
+    <%= f.check_input(:somatic) %>
+    <%= f.check_input(:material) %>
+    <%= f.check_input(:focus) %>
+    <%= f.check_input(:divine_focus) %>
+    <%= f.check_input(:costly_components) %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Options</legend>
+
+    <%= f.check_input :dismissible %>
+    <%= f.check_input :shapeable %>
+  </fieldset>
+
+  <%= f.text_area_input :short_description %>
+
+  <%= f.text_input :range %>
+
+  <%= f.text_input :area %>
+
+  <%= f.text_input :effect %>
+
+  <%= f.text_input :targets %>
+
+  <%= f.text_input :duration %>
+
+  <%= f.text_input :saving_throw %>
+
+  <%= f.text_input :spell_resistence %>
+
+  <%= f.text_input :source %>
+
+  <%= f.text_area_input :description %>
+
+  <%= f.submit %>
+
+<% end %>
