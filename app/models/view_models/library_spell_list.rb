@@ -16,7 +16,7 @@ module ViewModels
       # Create list of KlassSpellSpellBook objects.  Any given spell will only
       # appear in the list once, with preference to the spell book of the lowest id
       kssb_map.each do |ks, kssb_list|
-        @spells << kssb_list.min { |a, b| a.spell_book.id <=> b.spell_book.id }
+        @spells << pick_kssb(kssb_list)
       end
 
     end
@@ -40,6 +40,16 @@ module ViewModels
           mem == 0
         end
       end.sort { |a, b| a.klass_spell.spell.name <=> b.klass_spell.spell.name }
+    end
+
+    private
+
+    def pick_kssb(list)
+      return list.first if list.length <= 1
+
+      list.sort! { |a, b| a.spell_book.id <=> b.spell_book.id }
+
+      list.detect(list.first) { |kssb| kssb.is_learned? }
     end
   end
 end

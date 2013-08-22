@@ -83,7 +83,7 @@ class LibrariesController < ApplicationController
 
   def spell_sheet
     @mode = params[:mode] || 'memorizing'
-    @library = Library.includes(:spell_books => {:klass_spell_spell_books => {:klass_spell => :spell}}).find(params[:id])
+    @library = get_library(params[:id])
     @spells = ViewModels::LibrarySpellList.new(@library)
 
     respond_to do |format|
@@ -101,7 +101,7 @@ class LibrariesController < ApplicationController
     kssb.number_memorized -= 1 if kssb.number_memorized > 0
     kssb.save!
 
-    @library = Library.includes(:spell_books => {:klass_spell_spell_books => {:klass_spell => :spell}}).find(params[:id])
+    @library = get_library(params[:id])
     @spells = ViewModels::LibrarySpellList.new(@library)
 
     render 'update_memorization_block'
@@ -115,9 +115,16 @@ class LibrariesController < ApplicationController
     kssb.number_memorized += 1
     kssb.save!
 
-    @library = Library.includes(:spell_books => {:klass_spell_spell_books => {:klass_spell => :spell}}).find(params[:id])
+    @library = get_library(params[:id])
     @spells = ViewModels::LibrarySpellList.new(@library)
 
     render 'update_memorization_block'
   end
+
+  private
+
+  def get_library(lib_id)
+    Library.includes(:spell_books => {:klass_spell_spell_books => {:klass_spell => {:spell => :school}}}).find(lib_id)
+  end
+
 end
