@@ -75,3 +75,32 @@ div.spell_details {
   width: 15px;
   padding: 0 4px;
 }
+
+#spellsheet_header {
+  h2 {
+    float: left;
+    font-size: 30px;
+  }
+
+  #memorization_summary {
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0;
+
+    .level {
+      display: inline-block;
+      height: 100%;
+      margin: 0;
+      padding: 0 2px;
+      font-weight: bold;
+      background-color: lightgrey;
+    }
+  }
+
+  .level_summary {
+    float: left;
+    border: 1px solid black;
+    margin-left: 5px;
+  }
+}

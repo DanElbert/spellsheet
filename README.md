@@ -3,7 +3,7 @@ spellsheet
 
 Simple app for managing Pathfinder spellcaster spells
 
-All code is Copyright Dan Elbert, released under the GPL v3
+All code is Copyright Dan Elbert, released under the GPL v2
 
 
 All spells are taken from the Pathfinder SRD @ d20pfsrd.com

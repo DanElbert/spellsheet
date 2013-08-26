@@ -31,7 +31,10 @@ class Library < ActiveRecord::Base
       mem.number_memorized += 1
       mem.save!
     else
-      memorized_spells << MemorizedSpell.new(spell_id: spell_id, number_memorized: 1)
+      spell = Spell.find(spell_id)
+      level = spell.level_for_klass(self.klass)
+
+      memorized_spells << MemorizedSpell.new(spell: spell, level: level, number_memorized: 1)
     end
   end
 end

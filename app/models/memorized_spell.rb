@@ -6,6 +6,7 @@ class MemorizedSpell < ActiveRecord::Base
 
   validates :library, presence: true
   validates :spell, presence: true
+  validates :level, presence: true
 
   after_initialize :set_default_values
 

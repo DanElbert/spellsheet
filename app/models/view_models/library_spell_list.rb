@@ -29,6 +29,12 @@ module ViewModels
       levels.uniq
     end
 
+    def memorized_count_for_level(level)
+      count = 0
+      @library.memorized_spells.select { |ms| ms.level == level }.each { |ms| count += ms.number_memorized }
+      count
+    end
+
     def get_spells_by_level(level, memorized = nil)
       @spells.select { |kssb| kssb.klass_spell.level == level }.select do |kssb|
         if memorized.nil?

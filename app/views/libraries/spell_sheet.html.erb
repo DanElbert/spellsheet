@@ -1,5 +1,10 @@
 <div id="spellsheet">
-  <h2><%= link_to @library.name, @library %></h2>
+  <div id="spellsheet_header">
+    <h2><%= link_to @library.name, @library %></h2>
+    <div id="memorization_summary_container">
+      <%= render partial: 'libraries/spell_sheet/memorization_summary' %>
+    </div>
+  </div>
 
   <% if @mode == 'memorizing' %>
     <%= link_to 'Memorizing', spell_sheet_library_path(@library, :format => :html, :mode => 'casting'), :class => 'button' %>
