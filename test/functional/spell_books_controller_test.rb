@@ -35,8 +35,8 @@ class SpellBooksControllerTest < ActionController::TestCase
   end
 
   test "should update spell_book" do
-    put :update, id: @spell_book, spell_book: { klass_id: @spell_book.klass_id, name: @spell_book.name }
-    assert_redirected_to spell_book_path(assigns(:spell_book))
+    put :update, id: @spell_book, spell_book: { name: @spell_book.name }
+    assert_redirected_to library_path(@spell_book.library)
   end
 
   test "should destroy spell_book" do

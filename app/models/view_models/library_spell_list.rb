@@ -31,13 +31,12 @@ module ViewModels
 
     def get_spells_by_level(level, memorized = nil)
       @spells.select { |kssb| kssb.klass_spell.level == level }.select do |kssb|
-        mem = kssb.number_memorized || 0
         if memorized.nil?
           true
         elsif memorized
-          mem > 0
+          @library.number_memorized(kssb.klass_spell.spell_id) > 0
         else
-          mem == 0
+          @library.number_memorized(kssb.klass_spell.spell_id) == 0
         end
       end.sort { |a, b| a.klass_spell.spell.name <=> b.klass_spell.spell.name }
     end

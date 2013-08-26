@@ -3,5 +3,5 @@ class KlassSpellSpellBook < ActiveRecord::Base
   belongs_to :klass_spell
   belongs_to :spell_book
 
-  attr_accessible :is_learned, :number_memorized
+  attr_accessible :is_learned
 end

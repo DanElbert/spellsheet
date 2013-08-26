@@ -3,7 +3,9 @@
 one:
   name: MyString
   klass_id: 1
+  library: one
 
 two:
   name: MyString
   klass_id: 1
+  library: two

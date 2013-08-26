@@ -1,17 +1,20 @@
-<% spell = kssb.klass_spell.spell %>
-<% known = kssb.is_learned %>
+<%
+  spell = kssb.klass_spell.spell
+  known = kssb.is_learned
+  memorized = @library.number_memorized(spell.id)
+%>
 
 
-<div class="memorization_spell <%= known ? '' : raw("unknown") %>">
+<div class="memorization_spell <%= known ? '' : raw("unknown") %> <%= memorized > 0 ? 'memorized' : '' %>">
   <div class="number_memorized_block">
     <%= form_tag memorize_spell_library_path(@library), :remote => true do |f| %>
-      <%= hidden_field_tag 'kssb_id', kssb.id %>
+      <%= hidden_field_tag 'spell_id', spell.id %>
       <%= hidden_field_tag 'mode', @mode %>
       <%= submit_tag "+" %>
     <% end %>
-    <div class="number_memorized"><%= kssb.number_memorized || 0 %></div>
+    <div class="number_memorized"><%= memorized %></div>
     <%= form_tag cast_spell_library_path(@library), :remote => true do |f| %>
-      <%= hidden_field_tag 'kssb_id', kssb.id %>
+      <%= hidden_field_tag 'spell_id', spell.id %>
       <%= hidden_field_tag 'mode', @mode %>
       <%= submit_tag "-" %>
     <% end %>

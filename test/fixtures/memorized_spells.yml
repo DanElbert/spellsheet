@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  library_id: 1
+  spell_id: 1
+  number_memorized: 1
+
+two:
+  library_id: 1
+  spell_id: 1
+  number_memorized: 1

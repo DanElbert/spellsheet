@@ -13,12 +13,17 @@
   width: 330px;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 12pt;
-  border: 1px solid black;
+  border: 1px solid #555555;
   border-radius: 10px;
   padding: 4px;
   margin: 3px;
   height: 60px;
   overflow: hidden;
+}
+
+.memorization_spell.memorized {
+  border: 2px solid black;
+  margin: 2px;
 }
 
 .memorization_spell.unknown, .memorization_spell.unknown a {
