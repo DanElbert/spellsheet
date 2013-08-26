@@ -7,4 +7,5 @@ All code is Copyright Dan Elbert, released under the GPL v3
 
 
 All spells are taken from the Pathfinder SRD @ d20pfsrd.com
+
 Paizo Spells Database. Copyright 2011 Mike Chopswil, d20pfsrd.com
