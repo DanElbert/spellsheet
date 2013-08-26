@@ -1,5 +1,5 @@
 class MemorizedSpell < ActiveRecord::Base
-  attr_accessible :library_id, :number_memorized, :spell_id
+  attr_accessible :number_memorized, :spell, :level
 
   belongs_to :library, inverse_of: :memorized_spells
   belongs_to :spell
