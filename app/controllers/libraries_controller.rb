@@ -96,7 +96,7 @@ class LibrariesController < ApplicationController
   def cast_spell
     @mode = params[:mode]
 
-    @library = get_library(params[:id])
+    @library = Library.find(params[:id])
     @library.cast_spell(params[:spell_id])
 
     @spells = ViewModels::LibrarySpellList.new(@library)
@@ -107,7 +107,7 @@ class LibrariesController < ApplicationController
   def memorize_spell
     @mode = params[:mode]
 
-    @library = get_library(params[:id])
+    @library = Library.find(params[:id])
     @library.memorize_spell(params[:spell_id])
 
     @spells = ViewModels::LibrarySpellList.new(@library)

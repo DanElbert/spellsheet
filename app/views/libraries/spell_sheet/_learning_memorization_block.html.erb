@@ -5,8 +5,8 @@
 
   <div class="level_header"><h4>Level <%= level %></h4></div>
 
-  <% spells.each do |kssb| %>
-    <%= render partial: 'libraries/spell_sheet/spell', locals: {kssb: kssb} %>
+  <% spells.each do |s| %>
+    <%= render partial: 'libraries/spell_sheet/spell', locals: {spell: s} %>
   <% end %>
   <br class="clear" />
 <% end %>

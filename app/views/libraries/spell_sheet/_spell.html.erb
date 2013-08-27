@@ -1,7 +1,6 @@
 <%
-  spell = kssb.klass_spell.spell
-  known = kssb.is_learned
-  memorized = @library.number_memorized(spell.id)
+  known = spell.is_learned == 1
+  memorized = spell.number_memorized
 %>
 
 
