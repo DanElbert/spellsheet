@@ -112,7 +112,8 @@ class SpellBooksController < ApplicationController
     school = params[:spell_filter][:school]
     @available = KlassSpell.where(:klass_id => @spell_book.klass, :level => level).joins(:spell => :school).includes(:spell => :school).order("spells.name")
     @available = @available.where("spells.school_id = ?", school) if school.present?
-    @available = @available.select{ |ks| !@spell_book.klass_spells.include? ks }.map { |ks| [ks.spell.name, ks.id]}
+
+    @available = @available.to_a.select{ |ks| !@spell_book.klass_spell_ids.include? ks.id }.map { |ks| [ks.spell.name, ks.id]}
 
     @current = @spell_book.klass_spell_spell_books.includes(:klass_spell => :spell).order("level, spells.name")
   end
