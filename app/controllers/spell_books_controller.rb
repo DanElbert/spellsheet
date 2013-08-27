@@ -5,6 +5,9 @@ class SpellBooksController < ApplicationController
   def show
     @spell_book = SpellBook.find(params[:id])
     @levels = (0..9).to_a
+    @schools = Hash[School.order(:name).map { |s| [s.name, s.id]}]
+    @schools = {'Any' => nil}.merge(@schools)
+    @schools['Any'] = nil
 
     respond_to do |format|
       format.html # show.html.erb
@@ -106,18 +109,11 @@ class SpellBooksController < ApplicationController
   def list_spells
     @spell_book = SpellBook.includes(:klass_spells).find(params[:id])
     level = params[:spell_filter][:level]
-    @available = KlassSpell.where(:klass_id => @spell_book.klass, :level => level).joins(:spell => :school).includes(:spell => :school).order("schools.name, spells.name")
-    @available = @available.reduce({}) do |memo, ks|
-      next memo if @spell_book.klass_spells.include? ks
-      key = ks.spell.school.name
-      val = [ks.spell.name, ks.id]
-      if memo[key]
-        memo[key] << val
-      else
-        memo[key] = [val]
-      end
-      memo
-    end
+    school = params[:spell_filter][:school]
+    @available = KlassSpell.where(:klass_id => @spell_book.klass, :level => level).joins(:spell => :school).includes(:spell => :school).order("spells.name")
+    @available = @available.where("spells.school_id = ?", school) if school.present?
+    @available = @available.select{ |ks| !@spell_book.klass_spells.include? ks }.map { |ks| [ks.spell.name, ks.id]}
+
     @current = @spell_book.klass_spell_spell_books.includes(:klass_spell => :spell).order("level, spells.name")
   end
 

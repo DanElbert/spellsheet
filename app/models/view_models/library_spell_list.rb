@@ -35,6 +35,7 @@ module ViewModels
         end
         s = spells.first
         s.number_memorized ||= 0
+        s.is_learned = s.is_learned.to_bool
         @spells << s
       end
 
