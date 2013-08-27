@@ -5,3 +5,10 @@ class String
     raise ArgumentError.new("invalid value for Boolean: \"#{self}\"")
   end
 end
+
+class Fixnum
+  def to_bool
+    return false if self == 0
+    true
+  end
+end
