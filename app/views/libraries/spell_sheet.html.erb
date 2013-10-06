@@ -1,9 +1,7 @@
 <div id="spellsheet">
   <div id="spellsheet_header">
     <h2><%= link_to @library.name, @library %></h2>
-    <div id="memorization_summary_container">
       <%= render partial: 'libraries/spell_sheet/memorization_summary' %>
-    </div>
   </div>
 
   <% if @mode == 'memorizing' %>

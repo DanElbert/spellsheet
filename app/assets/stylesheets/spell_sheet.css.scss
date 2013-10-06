@@ -10,7 +10,7 @@
 
 .memorization_spell {
   float: left;
-  width: 330px;
+  width: 275px;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-size: 12pt;
   border: 1px solid #555555;
@@ -59,7 +59,7 @@ div.number_memorized {
 
 div.spell_details {
   float: left;
-  width: 305px;
+  width: 245px;
 }
 
 .memorization_spell form {
@@ -78,15 +78,17 @@ div.spell_details {
 
 #spellsheet_header {
   h2 {
-    float: left;
     font-size: 30px;
   }
 
   #memorization_summary {
-    float: left;
+    position: fixed;
+    top: 3px;
+    right: 5px;
     margin-top: 10px;
     margin-left: 20px;
     padding: 0;
+    background: white;
 
     .level {
       display: inline-block;
