@@ -5,7 +5,6 @@ class MemorizedSpell < ActiveRecord::Base
   belongs_to :spell
 
   validates :library, presence: true
-  validates :spell, presence: true
   validates :level, presence: true
 
   after_initialize :set_default_values
@@ -13,4 +12,14 @@ class MemorizedSpell < ActiveRecord::Base
   def set_default_values
     self.number_memorized ||= 0 if self.has_attribute?(:number_memorized)
   end
+
+  def get_name
+    if spell
+      name || spell.name
+    else
+      name
+    end
+  end
+
+
 end

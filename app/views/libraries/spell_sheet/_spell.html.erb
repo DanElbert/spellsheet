@@ -19,7 +19,7 @@
     <% end %>
   </div>
   <div class="spell_details">
-    <span class="spell_name"><%= link_to spell.name, spell, :remote => true %></span>
+    <span class="spell_name"><%= spell.is_spell ? link_to(spell.name, spell.spell, :remote => true) : spell.name %></span>
     <span class="spell_components">(<%= spell.short_components %>)</span>
     <span class="spell_school"><%= spell.formatted_school %></span><br/>
     <span class="spell_description"><%= spell.short_description %></span>

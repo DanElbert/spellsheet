@@ -14,6 +14,7 @@ module ViewModels
           LEFT OUTER JOIN memorized_spells ON memorized_spells.library_id = spell_books.library_id AND memorized_spells.spell_id = spells.id').
         where("spell_books.library_id = #{@library.id}")
 
+      custom_spells = MemorizedSpell.where(spell_id: nil, library_id: library.id)
 
       spell_map = {}
 
@@ -41,6 +42,7 @@ module ViewModels
 
       ActiveRecord::Associations::Preloader.new(@spells, :school).run
 
+      @spells = @spells.map { |s| ViewModels::SpellItem.from_spell(s) } + custom_spells.map { |m| ViewModels::SpellItem.from_custom_spell(m) }
     end
 
     def get_levels

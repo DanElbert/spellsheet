@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130827033559) do
+ActiveRecord::Schema.define(:version => 20131106223810) do
 
   create_table "klass_spells", :force => true do |t|
     t.integer  "klass_id"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20130827033559) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "level"
+    t.string   "name"
+    t.string   "description"
   end
 
   add_index "memorized_spells", ["spell_id", "library_id"], :name => "idx_memorized_spells_spell_library"
