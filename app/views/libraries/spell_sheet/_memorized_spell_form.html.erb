@@ -1,0 +1,25 @@
+
+<%= render partial: 'shared/error_list', locals: {model: @memorized_spell} %>
+
+<%= form_for @memorized_spell do |f| %>
+  <%= f.hidden_field :library_id %>
+  <%= f.hidden_field :spell_id %>
+
+  <%= if @memorized_spell.spell_id %>
+    <%= @memorized_spell.get_name %>
+    <%= @memorized_spell.get_description %>
+  <% else %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+
+    <%= f.label :level %>
+    <%= f.text_field :level %>
+  <% end %>
+
+
+
+
+<% end %>

@@ -56,5 +56,9 @@ module ViewModels
     def short_description
       @spell ? @spell.short_description : @memorized_spell.description
     end
+
+    def memorized_spell_id
+      @spell ? @spell.memorized_spell_id : @memorized_spell.id
+    end
   end
 end

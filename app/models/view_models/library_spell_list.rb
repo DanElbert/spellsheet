@@ -6,7 +6,7 @@ module ViewModels
     def initialize(library)
       @library = library
 
-      raw_spells = Spell.select('spells.id, spells.name, subschool, descriptor, casting_time, components, verbal, somatic, material, focus, short_description, school_id, is_learned, klass_spells.level, memorized_spells.number_memorized').
+      raw_spells = Spell.select('spells.id, spells.name, subschool, descriptor, casting_time, components, verbal, somatic, material, focus, short_description, school_id, is_learned, klass_spells.level, memorized_spells.number_memorized, memorized_spells.id AS memorized_spell_id').
         joins(
           'INNER JOIN klass_spells ON klass_spells.spell_id = spells.id
           INNER JOIN klass_spells_spell_books ON klass_spells_spell_books.klass_spell_id = klass_spells.id

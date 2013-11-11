@@ -9,6 +9,7 @@
 }
 
 .memorization_spell {
+  position: relative;
   float: left;
   width: 275px;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -19,61 +20,71 @@
   margin: 3px;
   height: 60px;
   overflow: hidden;
+
+  .memorized {
+    border: 2px solid black;
+    margin: 2px;
+  }
+
+  .unknown, .unknown a {
+    color: lightgray;
+  }
+
+  input[type='checkbox'] {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .spell_description {
+    font-style: italic;
+    font-size: 75%;
+    line-height: normal;
+  }
+
+  .spell_components {
+    font-size: 80%;
+  }
+
+  .spell_school {
+    font-size: 75%;
+  }
 }
 
-.memorization_spell.memorized {
-  border: 2px solid black;
-  margin: 2px;
-}
+.spell_controls {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 275px;
+  height: 60px;
+  padding: 4px;
+  background: #FFF;
+  padding-left: 24px;
 
-.memorization_spell.unknown, .memorization_spell.unknown a {
-  color: lightgray;
-}
+  form {
+    display: block;
+    margin: 0;
+    border: none;
+    float: left;
+  }
 
-.memorization_spell input[type='checkbox'] {
-  padding: 0px;
-  margin: 0px;
-}
-
-.memorization_spell .spell_description {
-  font-style: italic;
-  font-size: 75%;
-  line-height: normal;
-}
-
-.memorization_spell .spell_components {
-  font-size: 80%;
-}
-
-.memorization_spell .spell_school {
-  font-size: 75%;
-}
-
-div.number_memorized_block {
-  float: left;
-  width: 25px;
+  form input {
+    display: block;
+    height: 30px;
+    width: 23px;
+    margin: 5px;
+  }
 }
 
 div.number_memorized {
+  position: absolute;
+  top: 3px;
+  left: 3px;
 }
 
 div.spell_details {
-  float: left;
-  width: 245px;
-}
-
-.memorization_spell form {
-  display: block;
-  margin: 0;
-  border: none;
-}
-
-.memorization_spell form input {
-  display: block;
-  margin: 0;
-  height: 20px;
-  width: 15px;
-  padding: 0 4px;
+  margin-left: 20px;
+  width: 250px;
 }
 
 #spellsheet_header {

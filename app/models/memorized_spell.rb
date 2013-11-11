@@ -21,5 +21,12 @@ class MemorizedSpell < ActiveRecord::Base
     end
   end
 
+  def get_description
+    if spell
+      description || spell.short_description
+    else
+      description
+    end
+  end
 
 end

@@ -5,19 +5,23 @@
 
 
 <div class="memorization_spell <%= known ? '' : raw("unknown") %> <%= memorized > 0 ? 'memorized' : '' %>">
-  <div class="number_memorized_block">
+  <div class="spell_controls">
+    <span class="spell_name"><%= spell.is_spell ? link_to(spell.name, spell.spell, :remote => true) : spell.name %></span>
+    <br />
     <%= form_tag memorize_spell_library_path(@library), :remote => true do |f| %>
       <%= hidden_field_tag 'spell_id', spell.id %>
       <%= hidden_field_tag 'mode', @mode %>
       <%= submit_tag "+" %>
     <% end %>
-    <div class="number_memorized"><%= memorized %></div>
     <%= form_tag cast_spell_library_path(@library), :remote => true do |f| %>
       <%= hidden_field_tag 'spell_id', spell.id %>
       <%= hidden_field_tag 'mode', @mode %>
       <%= submit_tag "-" %>
     <% end %>
   </div>
+
+  <div class="number_memorized"><%= memorized %></div>
+
   <div class="spell_details">
     <span class="spell_name"><%= spell.is_spell ? link_to(spell.name, spell.spell, :remote => true) : spell.name %></span>
     <span class="spell_components">(<%= spell.short_components %>)</span>
