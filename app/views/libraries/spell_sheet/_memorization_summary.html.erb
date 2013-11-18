@@ -1,10 +1,4 @@
 
-<div id="memorization_summary">
-  <% @spells.get_levels.each do |level| %>
-    <div class="level_summary">
-      <span class="level"><%= level %></span>
-      <span class="memorization_count"><%= @spells.memorized_count_for_level(level) %></span>
-    </div>
-  <% end %>
+<div id="memorization_summary" data-bind="html: summaryMarkup">
 </div>
 <br class="clear" />

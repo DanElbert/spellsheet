@@ -28,6 +28,17 @@ function SpellSheetModel(data) {
 
   this.sort();
 
+  this.summaryMarkup = ko.computed(function() {
+    var markup = "";
+    _.each(this.availableLevels(), function(lvl) {
+      markup += "<div class=\"level_summary\">\n";
+      markup += "<span class=\"level\">" + lvl + "</span>";
+      markup += "<span class=\"memorization_count\">" + this.memorizedCountForLevel(lvl) + "</span>";
+      markup += "</div>"
+    }, this);
+    return markup;
+  }, this);
+
   this.sectionSortFunction = function(left, right) {
     if (left.section() == right.section()) {
       return 0;
@@ -36,6 +47,34 @@ function SpellSheetModel(data) {
     return left.section() < right.section() ? -1 : 1;
   };
 }
+
+SpellSheetModel.prototype.availableLevels = function() {
+  var levels = [];
+
+  _.each(this.sections(), function(section) {
+    _.each(section.levels(), function(level) {
+      levels.push(level.level());
+    })
+  });
+
+  return _.uniq(levels);
+};
+
+SpellSheetModel.prototype.memorizedCountForLevel = function(level) {
+  var count = 0;
+
+  _.each(this.sections(), function(section) {
+    _.each(section.levels(), function(l) {
+      if (l.level() == level) {
+        _.each(l.spells(), function(spell) {
+          count += spell.numberMemorized();
+        });
+      }
+    });
+  });
+
+  return count;
+};
 
 SpellSheetModel.prototype.libraryId = function() {
   return this.libraryIdValue;
