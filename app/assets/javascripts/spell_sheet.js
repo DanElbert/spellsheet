@@ -62,6 +62,40 @@ SpellSheetModel.prototype.addSpell = function(spell) {
   section.addSpell(spell);
 };
 
+SpellSheetModel.prototype.removeSpell = function(key) {
+  var spell = _.find(this.getAllSpells(), function(s) {
+    return s.key == key;
+  });
+
+  if (spell) {
+    spell.remove();
+  }
+};
+
+SpellSheetModel.prototype.updateSpell = function(spell_data) {
+  var spell = _.find(this.getAllSpells(), function(s) {
+    return s.key == spell_data.key;
+  });
+
+  if (spell) {
+    spell.update(spell_data);
+  }
+};
+
+SpellSheetModel.prototype.getAllSpells = function() {
+  var spells = [];
+
+  _.each(this.sections(), function(section) {
+    _.each(section.levels(), function(level) {
+      _.each(level.spells(), function(spell) {
+        spells.push(spell);
+      });
+    });
+  });
+
+  return spells;
+};
+
 SpellSheetModel.prototype.sort = function() {
   this.sections.sort(this.sectionSortFunction);
   _.each(this.sections(), function(s) {
@@ -219,4 +253,8 @@ SpellModel.prototype.update = function(spell) {
   this.components(spell.short_components);
   this.school(spell.formatted_school);
   this.description(spell.short_description);
+};
+
+SpellModel.prototype.remove = function() {
+  this.container.spells.remove(this);
 };

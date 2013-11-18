@@ -73,6 +73,32 @@ module ViewModels
       end.sort { |a, b| a.name <=> b.name }
     end
 
+    def get_json_for_spell_id(spell_id, mode)
+      spell = @spells.detect { |s| s.spell_id == spell_id }
+      if spell
+        if mode == 'memorizing'
+          spell.section = 0
+          return spell.as_json.to_json
+        else
+          spell.section = spell.number_memorized > 0 ? 0 : 1
+          return spell.as_json.to_json
+        end
+      end
+    end
+
+    def get_json_for_memorized_spell_id(memorized_spell_id, mode)
+      spell = @spells.detect { |s| s.memorized_spell_id == memorized_spell_id }
+      if spell
+        if mode == 'memorizing'
+          spell.section = 0
+          return spell.as_json.to_json
+        else
+          spell.section = spell.number_memorized > 0 ? 0 : 1
+          return spell.as_json.to_json
+        end
+      end
+    end
+
     def to_json(mode)
 
       json = {library_id: @library.id, mode: mode, spells: []}

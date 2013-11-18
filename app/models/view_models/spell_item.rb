@@ -3,6 +3,10 @@ module ViewModels
 
     attr_accessor :section
 
+    def self.create_key(spell_id, memorized_spell_id)
+      "#{spell_id}||#{memorized_spell_id}"
+    end
+
     def self.from_spell(spell, memorized_spell)
       new(spell, memorized_spell)
     end
@@ -25,7 +29,7 @@ module ViewModels
     end
 
     def key
-      "#{self.spell_id}||#{self.memorized_spell_id}"
+      self.class.create_key(self.spell_id, self.memorized_spell_id)
     end
 
     def spell_id

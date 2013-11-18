@@ -98,18 +98,34 @@ class LibrariesController < ApplicationController
 
   def cast_spell
     @mode = params[:mode]
+    @memorized_spell = MemorizedSpell.find(params[:memorized_spell_id])
+
+    @memorized_spell.number_memorized -= 1
+
+    if @memorized_spell.number_memorized <= 0
+      @memorized_spell.destroy
+    else
+      @memorized_spell.save!
+    end
 
     @library = Library.find(params[:id])
-    @library.cast_spell(params[:spell_id])
-
     @spells = ViewModels::LibrarySpellList.new(@library)
   end
 
   def memorize_spell
     @mode = params[:mode]
-
     @library = Library.find(params[:id])
-    @library.memorize_spell(params[:spell_id])
+
+    if params[:memorized_spell_id].present?
+      @memorized_spell = MemorizedSpell.find(params[:memorized_spell_id])
+    else
+      spell = Spell.find(params[:spell_id])
+      level = spell.level_for_klass(@library.klass)
+      @memorized_spell = MemorizedSpell.new(spell: spell, level: level, number_memorized: 0, library: @library)
+    end
+
+    @memorized_spell.number_memorized += 1
+    @memorized_spell.save!
 
     @spells = ViewModels::LibrarySpellList.new(@library)
   end

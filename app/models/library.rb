@@ -10,31 +10,4 @@ class Library < ActiveRecord::Base
     mem = memorized_spells.detect { |m| m.spell_id == spell_id.to_i }
     mem ? mem.number_memorized : 0
   end
-
-  def cast_spell(spell_id)
-    mem = memorized_spells.detect { |m| m.spell_id == spell_id.to_i }
-    if mem
-      mem.number_memorized -= 1
-
-      if mem.number_memorized <= 0
-        mem.destroy
-      else
-        mem.save!
-      end
-    end
-  end
-
-  def memorize_spell(spell_id)
-    mem = memorized_spells.detect { |m| m.spell_id == spell_id.to_i }
-
-    if mem
-      mem.number_memorized += 1
-      mem.save!
-    else
-      spell = Spell.find(spell_id)
-      level = spell.level_for_klass(self.klass)
-
-      memorized_spells << MemorizedSpell.new(spell: spell, level: level, number_memorized: 1)
-    end
-  end
 end
