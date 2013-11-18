@@ -1,8 +1,0 @@
-
-<%
-  partial = 'libraries/spell_sheet/learning_memorization_block'
-  partial = 'libraries/spell_sheet/casting_memorization_block' if @mode == 'casting'
-%>
-
-$("#memorization_block_container").html("<%= escape_javascript(render :partial => partial) %>");
-$("#memorization_summary_container").html("<%= escape_javascript(render :partial => 'libraries/spell_sheet/memorization_summary') %>");

@@ -1,3 +1,7 @@
+<% content_for :header do %>
+  <%= javascript_include_tag :spell_sheet %>
+<% end %>
+
 <div id="spellsheet">
   <div id="spellsheet_header">
     <h2><%= link_to @library.name, @library %></h2>
@@ -10,12 +14,7 @@
     <%= link_to 'Casting', spell_sheet_library_path(@library, :format => :html, :mode => 'memorizing'), :class => 'button' %>
   <% end %>
 
-  <div id="memorization_block_container">
-    <% if @mode == 'memorizing' %>
-      <%= render partial: 'libraries/spell_sheet/learning_memorization_block' %>
-    <% else %>
-      <%= render partial: 'libraries/spell_sheet/casting_memorization_block' %>
-    <% end %>
+  <div id="memorization_block_container" data-bind="template: {name: 'section-template', foreach: sections }">
   </div>
 
   <h3>Library Overview</h3>
@@ -59,3 +58,47 @@
   <%= render :partial => 'shared/spell_dialog' %>
 
 </div>
+
+<script type="text/javascript">
+  var viewModel = null;
+  $(document).ready(function() {
+    viewModel = new SpellSheetModel(<%= @initial_json_data.html_safe %>);
+    ko.applyBindings(viewModel);
+  });
+</script>
+
+<script type="text/html" id="section-template">
+
+    <!-- ko foreach: levels -->
+      <div class="level_header"><h4>Level <span data-bind="text: level"></span></h4></div>
+
+      <!-- ko foreach: spells -->
+        <div data-bind="css: { 'memorization_spell': true, 'memorized': numberMemorized() > 0, unknown: !isLearned() }">
+          <div class="spell_controls">
+            <span class="spell_name">
+              <a data-remote="true" data-bind="text: name, attr: { href: detailsUrl }"></a>
+            </span>
+            <br />
+            <a data-bind="attr: { href: quickMemorizeUrl }" data-method="post" data-remote="true">+</a>
+            <a data-bind="attr: { href: castUrl }" data-method="post" data-remote="true">-</a>
+          </div>
+
+          <div data-bind="text: numberMemorized" class="number_memorized"></div>
+
+          <div class="spell_details">
+            <span class="spell_name">
+              <a data-remote="true" data-bind="text: name, attr: { href: detailsUrl }"></a>
+            </span>
+            <span data-bind="text: components" class="spell_components"></span>
+            <span data-bind="text: school" class="spell_school"></span><br/>
+            <span data-bind="text: description" class="spell_description"></span>
+          </div>
+          <br style="clear: both;" />
+        </div>
+
+      <!-- /ko -->
+
+      <br class="clear" />
+    <!-- /ko -->
+
+</script>

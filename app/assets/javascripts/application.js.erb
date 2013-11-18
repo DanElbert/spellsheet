@@ -13,4 +13,11 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require_tree .
+//= require flash_messages
+//= require jquery.ui.touch.punch
+//= require underscore
+//= require knockout
+
+function getContextRoot() {
+  return "<%= ENV['RAILS_RELATIVE_URL_ROOT'] || '' %>";
+}

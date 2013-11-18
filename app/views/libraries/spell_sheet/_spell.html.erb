@@ -9,12 +9,12 @@
     <span class="spell_name"><%= spell.is_spell ? link_to(spell.name, spell.spell, :remote => true) : spell.name %></span>
     <br />
     <%= form_tag memorize_spell_library_path(@library), :remote => true do |f| %>
-      <%= hidden_field_tag 'spell_id', spell.id %>
+      <%= hidden_field_tag 'spell_id', spell.spell_id %>
       <%= hidden_field_tag 'mode', @mode %>
       <%= submit_tag "+" %>
     <% end %>
     <%= form_tag cast_spell_library_path(@library), :remote => true do |f| %>
-      <%= hidden_field_tag 'spell_id', spell.id %>
+      <%= hidden_field_tag 'spell_id', spell.spell_id %>
       <%= hidden_field_tag 'mode', @mode %>
       <%= submit_tag "-" %>
     <% end %>

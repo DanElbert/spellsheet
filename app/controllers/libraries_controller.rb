@@ -87,7 +87,10 @@ class LibrariesController < ApplicationController
     @spells = ViewModels::LibrarySpellList.new(@library)
 
     respond_to do |format|
-      format.html { render layout: 'minimal' }
+      format.html do
+        @initial_json_data = @spells.to_json(@mode)
+        render layout: 'minimal'
+      end
       format.pdf {}
     end
 
@@ -100,8 +103,6 @@ class LibrariesController < ApplicationController
     @library.cast_spell(params[:spell_id])
 
     @spells = ViewModels::LibrarySpellList.new(@library)
-
-    render 'update_memorization_block'
   end
 
   def memorize_spell
@@ -111,8 +112,6 @@ class LibrariesController < ApplicationController
     @library.memorize_spell(params[:spell_id])
 
     @spells = ViewModels::LibrarySpellList.new(@library)
-
-    render 'update_memorization_block'
   end
 
   private

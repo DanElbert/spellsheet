@@ -21,11 +21,6 @@
   height: 60px;
   overflow: hidden;
 
-  .memorized {
-    border: 2px solid black;
-    margin: 2px;
-  }
-
   .unknown, .unknown a {
     color: lightgray;
   }
@@ -48,6 +43,15 @@
   .spell_school {
     font-size: 75%;
   }
+}
+
+.memorization_spell.memorized {
+  border: 2px solid black;
+  margin: 2px;
+}
+
+.memorization_spell.unknown, .unknown a {
+  color: lightgray;
 }
 
 .spell_controls {

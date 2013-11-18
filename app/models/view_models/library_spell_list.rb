@@ -42,7 +42,13 @@ module ViewModels
 
       ActiveRecord::Associations::Preloader.new(@spells, :school).run
 
-      @spells = @spells.map { |s| ViewModels::SpellItem.from_spell(s) } + custom_spells.map { |m| ViewModels::SpellItem.from_custom_spell(m) }
+      memorized_spells = MemorizedSpell.where(id: @spells.map{ |s| s.memorized_spell_id })
+
+      @spells = @spells.map do |s|
+        ViewModels::SpellItem.from_spell(s, memorized_spells.detect { |m| m.id == s.memorized_spell_id})
+      end
+
+      @spells += custom_spells.map { |m| ViewModels::SpellItem.from_custom_spell(m) }
     end
 
     def get_levels
@@ -65,6 +71,32 @@ module ViewModels
           s.number_memorized == 0
         end
       end.sort { |a, b| a.name <=> b.name }
+    end
+
+    def to_json(mode)
+
+      json = {library_id: @library.id, mode: mode, spells: []}
+
+      if mode == 'memorizing'
+        @spells.each do |s|
+          s.section = 0
+          json[:spells] << s.as_json
+        end
+      else
+        self.get_levels.each do |level|
+          get_spells_by_level(level, true).each do |spell|
+            spell.section = 0
+            json[:spells] << spell.as_json
+          end
+
+          get_spells_by_level(level, false).each do |spell|
+            spell.section = 1
+            json[:spells] << spell.as_json
+          end
+        end
+      end
+
+      json.to_json
     end
   end
 end
