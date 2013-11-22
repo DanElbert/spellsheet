@@ -7,7 +7,7 @@ set :rvm_ruby_string, '1.9.3-p194'
 set :rvm_type, :system
 
 # Asset Compilation
-set :asset_env, "#{asset_env} RAILS_RELATIVE_URL_ROOT=/spellsheet"
+set :asset_env, "#{asset_env} RAILS_RELATIVE_URL_ROOT=/"
 
 # Source code
 set :scm, :git
