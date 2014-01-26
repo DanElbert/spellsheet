@@ -73,11 +73,15 @@ class LibrariesController < ApplicationController
   # DELETE /libraries/1.json
   def destroy
     @library = Library.find(params[:id])
-    @library.destroy
 
     respond_to do |format|
-      format.html { redirect_to libraries_url }
-      format.json { head :no_content }
+      if @library.destroy
+        format.html { redirect_to libraries_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to libraries_url, flash: { error: "Unable to delete library: #{@library.errors.full_messages.join('<br/>')}"} }
+        format.json { render json: @library.errors, status: :unprocessable_entity }
+      end
     end
   end
 

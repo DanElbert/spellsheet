@@ -23,7 +23,10 @@
 <%= link_to "Add Book", new_spell_book_path(:library_id => @library.id), method: :post, class: 'button' %>
 <br/>
 
-<%= link_to 'Print Spell Sheet', spell_sheet_library_path(@library) %> |
-<%= link_to 'View Spell Sheet', spell_sheet_library_path(@library, :format => :html) %>
+<%= link_to 'Print Spell Sheet', spell_sheet_library_path(@library), class: 'button' %> |
+<%= link_to 'View Spell Sheet', spell_sheet_library_path(@library, :format => :html), class: 'button' %>
+<br/>
+
+<%= link_to 'Edit Library', edit_library_path(@library), class: 'button' %>
 <br/><br/>
-<%= link_to 'Back to Libraries', libraries_path %>
+<%= link_to 'Back to Libraries', libraries_path, class: 'button' %>
