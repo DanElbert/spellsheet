@@ -7,6 +7,7 @@ gem 'mysql2'
 gem 'activerecord-import'
 gem 'prawn_rails'
 gem "prawn", "0.12.0"
+gem 'thin'
 
 group :deploy do
   gem 'capistrano'

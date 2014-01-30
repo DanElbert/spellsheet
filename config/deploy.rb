@@ -3,7 +3,7 @@ default_run_options[:pty] = true
 set :application, "spellsheet"
 
 # RVM Config
-set :rvm_ruby_string, '1.9.3-p194'
+set :rvm_ruby_string, '2.1.0'
 set :rvm_type, :system
 
 # Asset Compilation
@@ -15,11 +15,11 @@ set :repository, "git@github.com:DanElbert/spellsheet.git"
 set :branch, "master"
 
 # Web Server Config
-set :deploy_to, "/var/www-apps/#{application}"
+set :deploy_to, "/var/www/#{application}"
 
-role :web, "azathoth"                          # Your HTTP server, Apache/etc
-role :app, "azathoth"                          # This may be the same as your `Web` server
-role :db,  "azathoth", :primary => true # This is where Rails migrations will run
+role :web, "rlyeh"                          # Your HTTP server, Apache/etc
+role :app, "rlyeh"                          # This may be the same as your `Web` server
+role :db,  "rlyeh", :primary => true # This is where Rails migrations will run
 
 require "rvm/capistrano"
 require "bundler/capistrano"
