@@ -9,6 +9,9 @@
 
   <%= label_tag "School" %>
   <%= select(:spell_filter, :school, options_for_select(@schools)) %>
+
+  <%= label_tag "Source" %>
+  <%= select(:spell_filter, :source, options_for_select(@sources)) %>
 <% end %>
 
 <%= form_tag add_spell_spell_book_path(@spell_book), :remote => true, :id => "available_spells_form" do %>
@@ -32,7 +35,7 @@
     $("#spell_filter_form").submit();
   });
 
-  $("#spell_filter_level, #spell_filter_school").change(function() {
+  $("#spell_filter_level, #spell_filter_school, #spell_filter_source").change(function() {
     $("#spell_filter_form").submit();
   });
 

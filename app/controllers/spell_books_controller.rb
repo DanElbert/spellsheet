@@ -9,6 +9,11 @@ class SpellBooksController < ApplicationController
     @schools = {'Any' => nil}.merge(@schools)
     @schools['Any'] = nil
 
+    @sources = Spell.joins(:klass_spells).where('klass_spells.klass_id = ?', @spell_book.klass_id).select('COUNT(spells.id) AS c').group(:source).order('c DESC, source').pluck(:source)
+    @sources = @sources.map { |s| [s, s] }
+    @sources = [['Any', nil]] + @sources
+    @sources = Hash[@sources]
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @spell_book }
@@ -110,8 +115,10 @@ class SpellBooksController < ApplicationController
     @spell_book = SpellBook.includes(:klass_spells).find(params[:id])
     level = params[:spell_filter][:level]
     school = params[:spell_filter][:school]
+    source = params[:spell_filter][:source]
     @available = KlassSpell.where(:klass_id => @spell_book.klass, :level => level).joins(:spell => :school).includes(:spell => :school).order("spells.name")
     @available = @available.where("spells.school_id = ?", school) if school.present?
+    @available = @available.where("spells.source = ?", source) if source.present?
 
     @available = @available.to_a.select{ |ks| !@spell_book.klass_spell_ids.include? ks.id }.map { |ks| [ks.spell.name, ks.id]}
 

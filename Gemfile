@@ -1,23 +1,23 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.14'
+gem 'rails', '3.2.17'
 
 gem 'sqlite3'
 gem 'mysql2'
-gem 'activerecord-import'
+gem 'activerecord-import', '~> 0.5.0'
 gem 'prawn_rails'
-gem "prawn", "0.12.0"
+gem 'prawn', '~> 0.12.0'
 gem 'thin'
 
 group :deploy do
-  gem 'capistrano'
+  gem 'capistrano', '~> 2.15.5'
   gem 'rvm-capistrano'
 end
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
+  gem 'sass-rails', '~> 3.2.6'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer', :platforms => :ruby
@@ -25,10 +25,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails', '2.2.1'
-gem 'jquery-ui-rails', '4.0.2'
+gem 'jquery-rails', '~> 3.1.0'
+gem 'jquery-ui-rails', '~> 4.2.0'
 
-gem 'skeleton-rails'
+gem 'skeleton-rails', '~> 0.1.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
