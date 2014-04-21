@@ -10,7 +10,7 @@ pdf.bounding_box([0, pdf.cursor], :width => current_width, :height => spell_bloc
 
   pdf.line_width 0.5
 
-  pdf.transparent(klass_spell_spell_books.index { |kssb| kssb.is_learned } ? 1.0 : 0.25) do
+  pdf.transparent(spell.is_learned ? 1.0 : 0.25) do
 
     pdf.pad(padding) do
       pdf.indent(padding, padding) do
@@ -24,14 +24,14 @@ pdf.bounding_box([0, pdf.cursor], :width => current_width, :height => spell_bloc
         end
 
         pdf.formatted_text_box [
-            { :text => "#{klass_spell.spell.name} ", :styles => [], :size => font_percent(100) },
-            { :text => "(#{klass_spell.spell.short_components}) ", :size => font_percent(80) } ,
-            { :text => "#{klass_spell.spell.formatted_school}", :size => font_percent(75) }],
+            { :text => "#{spell.name} ", :styles => [], :size => font_percent(100) },
+            { :text => "(#{spell.short_components}) ", :size => font_percent(80) } ,
+            { :text => "#{spell.formatted_school}", :size => font_percent(75) }],
           :at => [(3 * (check_box_size + check_box_gutter)), top],
           :height => font_percent(150)
 
         pdf.formatted_text_box [
-            { :text => "#{(klass_spell.spell.short_description || "").gsub(/^\s+/, "")}",
+            { :text => "#{(spell.short_description || "").gsub(/^\s+/, "")}",
               :styles => [:italic],
               :size => font_percent(75)
             } ],

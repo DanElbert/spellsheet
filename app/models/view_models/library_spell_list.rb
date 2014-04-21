@@ -1,6 +1,8 @@
 module ViewModels
   class LibrarySpellList
 
+    attr_reader :spells
+
     SpellData = Struct.new(:spell, :level, :known, :number_memorized)
 
     def initialize(library)

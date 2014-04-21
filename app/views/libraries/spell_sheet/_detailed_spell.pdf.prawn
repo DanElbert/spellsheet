@@ -6,8 +6,6 @@ def heading(pdf, text)
   pdf.stroke_horizontal_rule
 end
 
-spell = klass_spell.spell
-
 pdf.group do
   pdf.pad(font_percent(100)) do
     pdf.text "<b>#{spell.name}</b>", :size => font_percent(150), :inline_format => true
@@ -16,7 +14,7 @@ pdf.group do
   pdf.font_size base_font_size do
 
     pdf.pad_bottom(font_percent(75)) do
-      pdf.text "<b>School</b> #{spell.school.name}; <b>Level</b> #{klass_spell.level}", :size => font_percent(100), :inline_format => true
+      pdf.text "<b>School</b> #{spell.school.name}; <b>Level</b> #{level}", :size => font_percent(100), :inline_format => true
     end
 
     heading(pdf, "CASTING")

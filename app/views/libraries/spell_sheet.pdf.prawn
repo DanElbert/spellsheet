@@ -22,11 +22,14 @@ prawn_document() do |pdf|
     pdf.start_new_page
   end
   
-  spells = @spell_levels.inject([]) { |memo, level| memo + level[1].keys }
+  spells = @spells.spells.dup
   spells.sort! { |a, b| a.spell.name <=> b.spell.name }
+
+  # Detailed spell sheets require full spell objects, which were not loaded by the controller
+  spells = Spell.includes(:school, :klass_spells).where(id: @spells.spells.select{ |s| s.is_spell }.map { |s| s.spell_id })
   
-  spells.each do |ks|
-    render "libraries/spell_sheet/detailed_spell", :pdf => pdf, :klass_spell => ks
+  spells.each do |s|
+    render "libraries/spell_sheet/detailed_spell", :pdf => pdf, :spell => s, :level => s.level_for_klass(@library.klass)
   end
   
   string = "<page>"
