@@ -18,15 +18,24 @@ $(document).ready(function() {
 function SpellSheetModel(data) {
   this.sections = ko.observableArray();
   this.libraryIdValue = data.library_id;
-  this.modeValue = data.mode;
 
-  var spells = data.spells;
+  this.mode = ko.observable("memorizing");
 
-  for (var x = 0; x < spells.length; x++) {
-    this.addSpell(spells[x]);
-  }
+  this.modeText = ko.computed(function() {
+    if (this.mode() == "memorizing") {
+      return "Memorizing";
+    } else {
+      return "Casting";
+    }
+  }, this);
 
-  this.sort();
+  this.spells = [];
+
+  _.each(data.spells, function(s) {
+    this.spells.push(new SpellModel(s, this));
+  }, this);
+
+  this.rebuild();
 
   this.summaryMarkup = ko.computed(function() {
     var markup = "";
@@ -48,6 +57,25 @@ function SpellSheetModel(data) {
   };
 }
 
+SpellSheetModel.prototype.toggleMode = function() {
+  if (this.mode() == "memorizing") {
+    this.mode("casting");
+  } else {
+    this.mode("memorizing");
+  }
+  this.rebuild();
+};
+
+SpellSheetModel.prototype.rebuild = function() {
+  this.sections([]);
+
+  for (var x = 0; x < this.spells.length; x++) {
+    this.addSpellToSection(this.spells[x]);
+  }
+
+  this.sort();
+};
+
 SpellSheetModel.prototype.availableLevels = function() {
   var levels = [];
 
@@ -63,14 +91,10 @@ SpellSheetModel.prototype.availableLevels = function() {
 SpellSheetModel.prototype.memorizedCountForLevel = function(level) {
   var count = 0;
 
-  _.each(this.sections(), function(section) {
-    _.each(section.levels(), function(l) {
-      if (l.level() == level) {
-        _.each(l.spells(), function(spell) {
-          count += spell.numberMemorized();
-        });
-      }
-    });
+  _.each(this.spells, function(spell) {
+    if (spell.level == level) {
+      count += spell.numberMemorized();
+    }
   });
 
   return count;
@@ -80,59 +104,53 @@ SpellSheetModel.prototype.libraryId = function() {
   return this.libraryIdValue;
 };
 
-SpellSheetModel.prototype.mode = function() {
-  return this.modeValue;
-};
-
-SpellSheetModel.prototype.addSpell = function(spell) {
+SpellSheetModel.prototype.addSpellToSection = function(spell) {
   var section = null;
   for (var x = 0; x < this.sections().length; x++) {
-    if (this.sections()[x].section() == spell.section) {
+    if (this.sections()[x].section() == spell.section()) {
       section = this.sections()[x];
       break;
     }
   }
 
   if (section == null) {
-    section = new SectionModel(spell.section, this);
+    section = new SectionModel(spell.section(), this);
     this.sections.push(section);
   }
 
   section.addSpell(spell);
 };
 
-SpellSheetModel.prototype.removeSpell = function(key) {
-  var spell = _.find(this.getAllSpells(), function(s) {
-    return s.key == key;
-  });
+SpellSheetModel.prototype.addSpell = function(spellData) {
+  var spell = new SpellModel(spellData, this);
+  this.spells.push(spell);
+  this.addSpellToSection(spell);
+};
 
-  if (spell) {
-    spell.remove();
+SpellSheetModel.prototype.removeSpell = function(key) {
+  var index = -1;
+
+  for (var x = 0; x < this.spells.length; x++) {
+    if (this.spells[x].key == key) {
+      index = x;
+      break;
+    }
+  }
+
+  if (index >= 0) {
+    this.spells.splice(index, 1);
+    this.rebuild();
   }
 };
 
 SpellSheetModel.prototype.updateSpell = function(spell_data) {
-  var spell = _.find(this.getAllSpells(), function(s) {
+  var spell = _.find(this.spells, function(s) {
     return s.key == spell_data.key;
   });
 
   if (spell) {
     spell.update(spell_data);
   }
-};
-
-SpellSheetModel.prototype.getAllSpells = function() {
-  var spells = [];
-
-  _.each(this.sections(), function(section) {
-    _.each(section.levels(), function(level) {
-      _.each(level.spells(), function(spell) {
-        spells.push(spell);
-      });
-    });
-  });
-
-  return spells;
 };
 
 SpellSheetModel.prototype.sort = function() {
@@ -159,14 +177,6 @@ function SectionModel(section, container) {
     return left.level() < right.level() ? -1 : 1;
   };
 }
-
-SectionModel.prototype.libraryId = function() {
-  return this.container.libraryId();
-};
-
-SectionModel.prototype.mode = function() {
-  return this.container.mode();
-};
 
 SectionModel.prototype.addSpell = function(spell) {
   var level = null;
@@ -210,16 +220,8 @@ function LevelModel(level, container) {
   };
 }
 
-LevelModel.prototype.libraryId = function() {
-  return this.container.libraryId();
-};
-
-LevelModel.prototype.mode = function() {
-  return this.container.mode();
-};
-
 LevelModel.prototype.addSpell = function(spell) {
-  this.spells.push(new SpellModel(spell, this));
+  this.spells.push(spell);
 };
 
 LevelModel.prototype.sort = function() {
@@ -230,10 +232,10 @@ LevelModel.prototype.sort = function() {
 // ========================================
 // SpellModel
 // ========================================
-function SpellModel(spell, container) {
-  this.container = container;
+function SpellModel(spell, spellSheet) {
+  this.spellSheet = spellSheet;
   this.key = spell.key;
-  this.section = spell.section;
+  //this.section = spell.section;
   this.level = spell.level;
   this.spellId = spell.spell_id;
   this.memorizedId = spell.memorized_spell_id;
@@ -247,6 +249,22 @@ function SpellModel(spell, container) {
 
   this.update(spell);
 
+  this.libraryId = ko.computed(function() {
+    return this.spellSheet.libraryId();
+  }, this);
+
+  this.mode = ko.computed(function() {
+    return this.spellSheet.mode();
+  }, this);
+
+  this.section = ko.computed(function() {
+    if (this.mode() == 'memorizing') {
+      return 0;
+    } else {
+      return (this.numberMemorized() > 0) ? 0 : 1;
+    }
+  }, this);
+
   this.detailsUrl = ko.computed(function() {
     if (this.spellId) {
       return getContextRoot() + "/spells/" + this.spellId;
@@ -259,31 +277,30 @@ function SpellModel(spell, container) {
 
     var data = {
       spell_id: this.spellId,
-      memorized_spell_id: this.memorizedId,
-      mode: this.mode()
+      memorized_spell_id: this.memorizedId
     };
 
     return getContextRoot() + "/libraries/" + this.libraryId() + "/memorize_spell.js?" + $.param(data);
   }, this);
 
+  this.memorizeUrl = ko.computed(function() {
+
+    var data = {
+      spell_id: this.spellId
+    };
+
+    return getContextRoot() + "/libraries/" + this.libraryId() + "/custom_spell.js?" + $.param(data);
+  }, this);
+
   this.castUrl = ko.computed(function() {
 
     var data = {
-      memorized_spell_id: this.memorizedId,
-      mode: this.mode()
+      memorized_spell_id: this.memorizedId
     };
 
     return getContextRoot() + "/libraries/" + this.libraryId() + "/cast_spell.js?" + $.param(data);
   }, this);
 }
-
-SpellModel.prototype.libraryId = function() {
-  return this.container.libraryId();
-};
-
-SpellModel.prototype.mode = function() {
-  return this.container.mode();
-};
 
 SpellModel.prototype.update = function(spell) {
   this.isLearned(spell.is_learned);

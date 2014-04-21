@@ -3,10 +3,10 @@
   viewModel.removeSpell("<%= ViewModels::SpellItem.create_key(@memorized_spell.spell_id, @memorized_spell.id) %>");
 
   <% if @memorized_spell.spell_id %>
-    viewModel.addSpell(<%= @spells.get_json_for_spell_id(@memorized_spell.spell_id, @mode).html_safe %>);
+    viewModel.addSpell(<%= @spells.get_json_for_spell_id(@memorized_spell.spell_id).html_safe %>);
   <% end %>
 <% else %>
-  viewModel.updateSpell(<%= @spells.get_json_for_memorized_spell_id(@memorized_spell.id, @mode).html_safe %>);
+  viewModel.updateSpell(<%= @spells.get_json_for_memorized_spell_id(@memorized_spell.id).html_safe %>);
 <% end %>
 
 viewModel.sort();

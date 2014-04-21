@@ -1,0 +1,14 @@
+<%= render partial: 'shared/error_list', locals: {model: @memorized_spell} %>
+
+<%= form_for(@memorized_spell, { url: memorize_custom_spell_library_path, remote: true}) do |f| %>
+  <%= f.hidden_field :spell_id %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :level %>
+  <%= f.text_field :level %>
+
+  <%= f.submit nil, {id: 'memorized_spell_submit'}  %>
+<% end %>
+

@@ -8,11 +8,7 @@
       <%= render partial: 'libraries/spell_sheet/memorization_summary' %>
   </div>
 
-  <% if @mode == 'memorizing' %>
-    <%= link_to 'Memorizing', spell_sheet_library_path(@library, :format => :html, :mode => 'casting'), :class => 'button' %>
-  <% else %>
-    <%= link_to 'Casting', spell_sheet_library_path(@library, :format => :html, :mode => 'memorizing'), :class => 'button' %>
-  <% end %>
+  <button type="button" data-bind="text: modeText, click: toggleMode"></button>
 
   <div id="memorization_block_container" data-bind="template: {name: 'section-template', foreach: sections }">
   </div>
@@ -59,9 +55,16 @@
 
 </div>
 
+<div id="memorize_spell_dialog">
+  <div id="memorize_spell_content"></div>
+</div>
+
 <script type="text/javascript">
   var viewModel = null;
   $(document).ready(function() {
+
+    $("#memorize_spell_dialog").dialog({width: "600px", autoOpen: false, dialogClass: 'fixed-dialog'});
+
     viewModel = new SpellSheetModel(<%= @initial_json_data.html_safe %>);
     ko.applyBindings(viewModel);
   });
@@ -81,6 +84,7 @@
             <br />
             <a class="button" data-bind="attr: { href: quickMemorizeUrl }" data-method="post" data-remote="true">+</a>
             <a class="button" data-bind="attr: { href: castUrl }" data-method="post" data-remote="true">-</a>
+            <a class="button" data-bind="attr: { href: memorizeUrl }" data-remote="true">Custom</a>
           </div>
 
           <div data-bind="text: numberMemorized" class="number_memorized"></div>

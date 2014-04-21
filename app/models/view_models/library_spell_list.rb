@@ -73,53 +73,27 @@ module ViewModels
       end.sort { |a, b| a.name <=> b.name }
     end
 
-    def get_json_for_spell_id(spell_id, mode)
+    def get_json_for_spell_id(spell_id)
       spell = @spells.detect { |s| s.spell_id == spell_id }
       if spell
-        if mode == 'memorizing'
-          spell.section = 0
-          return spell.as_json.to_json
-        else
-          spell.section = spell.number_memorized > 0 ? 0 : 1
-          return spell.as_json.to_json
-        end
+        return spell.as_json.to_json
       end
     end
 
-    def get_json_for_memorized_spell_id(memorized_spell_id, mode)
+    def get_json_for_memorized_spell_id(memorized_spell_id)
       spell = @spells.detect { |s| s.memorized_spell_id == memorized_spell_id }
       if spell
-        if mode == 'memorizing'
-          spell.section = 0
-          return spell.as_json.to_json
-        else
-          spell.section = spell.number_memorized > 0 ? 0 : 1
-          return spell.as_json.to_json
-        end
+        return spell.as_json.to_json
       end
     end
 
-    def to_json(mode)
+    def to_json
 
-      json = {library_id: @library.id, mode: mode, spells: []}
+      json = {library_id: @library.id, spells: []}
 
-      if mode == 'memorizing'
-        @spells.each do |s|
-          s.section = 0
-          json[:spells] << s.as_json
-        end
-      else
-        self.get_levels.each do |level|
-          get_spells_by_level(level, true).each do |spell|
-            spell.section = 0
-            json[:spells] << spell.as_json
-          end
-
-          get_spells_by_level(level, false).each do |spell|
-            spell.section = 1
-            json[:spells] << spell.as_json
-          end
-        end
+      @spells.each do |s|
+        s.section = 0
+        json[:spells] << s.as_json
       end
 
       json.to_json

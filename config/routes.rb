@@ -5,6 +5,8 @@ Spellsheet::Application.routes.draw do
       get 'spell_sheet', :defaults => { :format => "pdf" }
       post 'memorize_spell'
       post 'cast_spell'
+      get 'custom_spell'
+      post 'memorize_custom_spell'
     end
   end
 

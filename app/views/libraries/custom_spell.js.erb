@@ -1,0 +1,27 @@
+
+(function($) {
+
+  var defaultWidth = 350;
+  var viewPortWidth = $(document).width() - 10;
+  var viewPortHeight = $(document).height() - 10;
+
+  var dialog = $("#memorize_spell_dialog");
+  var content = $("#memorize_spell_content");
+
+  if (viewPortWidth < defaultWidth) {
+    dialog.dialog("option", "width", viewPortWidth + "px");
+  } else {
+    dialog.dialog("option", "width", defaultWidth + "px");
+  }
+
+  dialog.dialog("option", "maxHeight", viewPortHeight + "px");
+
+  dialog.attr("title", "Memorize Custom Spell");
+  content.html("<%= escape_javascript(render :partial => "custom_spell_form") %>");
+
+  dialog.dialog("open");
+
+  $("#memorized_spell_submit").click(function() {
+    dialog.dialog("close");
+  })
+})(jQuery);

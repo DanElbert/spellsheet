@@ -86,13 +86,12 @@ class LibrariesController < ApplicationController
   end
 
   def spell_sheet
-    @mode = params[:mode] || 'memorizing'
     @library = get_library(params[:id])
     @spells = ViewModels::LibrarySpellList.new(@library)
 
     respond_to do |format|
       format.html do
-        @initial_json_data = @spells.to_json(@mode)
+        @initial_json_data = @spells.to_json()
         render layout: 'minimal'
       end
       format.pdf {}
@@ -101,7 +100,6 @@ class LibrariesController < ApplicationController
   end
 
   def cast_spell
-    @mode = params[:mode]
     @memorized_spell = MemorizedSpell.find(params[:memorized_spell_id])
 
     @memorized_spell.number_memorized -= 1
@@ -117,7 +115,6 @@ class LibrariesController < ApplicationController
   end
 
   def memorize_spell
-    @mode = params[:mode]
     @library = Library.find(params[:id])
 
     if params[:memorized_spell_id].present?
@@ -132,6 +129,32 @@ class LibrariesController < ApplicationController
     @memorized_spell.save!
 
     @spells = ViewModels::LibrarySpellList.new(@library)
+  end
+
+  def custom_spell
+    @library = Library.find(params[:id])
+
+    @memorized_spell = MemorizedSpell.new
+    if params[:spell_id]
+      spell = Spell.find(params[:spell_id])
+      @memorized_spell.name = spell.name
+      @memorized_spell.level = spell.level_for_klass(@library.klass)
+    end
+  end
+
+  def memorize_custom_spell
+    @library = Library.find(params[:id])
+
+    @memorized_spell = MemorizedSpell.new(params[:memorized_spell])
+    @memorized_spell.number_memorized = 1
+    @memorized_spell.library = @library
+
+    if @memorized_spell.save
+      @spells = ViewModels::LibrarySpellList.new(@library)
+      render :memorize_spell
+    else
+      render :custom_spell
+    end
   end
 
   private
