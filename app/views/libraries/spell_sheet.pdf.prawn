@@ -21,15 +21,12 @@ prawn_document() do |pdf|
   if pdf.page_count % 2 == 0
     pdf.start_new_page
   end
-  
-  spells = @spells.spells.dup
-  spells.sort! { |a, b| a.spell.name <=> b.spell.name }
 
   # Detailed spell sheets require full spell objects, which were not loaded by the controller
-  spells = Spell.includes(:school, :klass_spells).where(id: @spells.spells.select{ |s| s.is_spell }.map { |s| s.spell_id })
+  spells = @library.collect_spells_with_levels.sort { |a, b| a[1].name <=> b[1].name }
   
-  spells.each do |s|
-    render "libraries/spell_sheet/detailed_spell", :pdf => pdf, :spell => s, :level => s.level_for_klass(@library.klass)
+  spells.each do |l, s|
+    render "libraries/spell_sheet/detailed_spell", :pdf => pdf, :spell => s, :level => l
   end
   
   string = "<page>"

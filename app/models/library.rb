@@ -21,4 +21,16 @@ class Library < ActiveRecord::Base
       true
     end
   end
+
+  # Dumb method assumes all the models are loaded; won't pre-fetch anything in a reasonable way
+  def collect_spells_with_levels
+    spells = []
+    spell_books.each do |sb|
+      sb.klass_spell_spell_books.each do |kssb|
+        spells << [kssb.klass_spell.level, kssb.klass_spell.spell]
+      end
+    end
+
+    spells.uniq
+  end
 end
