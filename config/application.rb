@@ -35,10 +35,6 @@ module Spellsheet
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    initializer :after_append_asset_paths, :group => :all, :after => :append_assets_path do
-      config.assets.paths.unshift Rails.root.join("app", "assets", "stylesheets", "jquery-ui", "humanity").to_s
-    end
-
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
