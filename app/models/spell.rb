@@ -19,6 +19,10 @@ class Spell < ActiveRecord::Base
     ks = klass_spells.detect { |klass_spell| klass_spell.klass_id == klass_id }
     klass_spells.delete(ks) if ks
   end
+
+  def level_summary
+    klass_spells.to_a.sort { |a, b| a.klass.name <=> b.klass.name }.map { |ks| "#{ks.klass.name} #{ks.level}" }.join(', ')
+  end
   
   def short_components
     types = []

@@ -2,16 +2,40 @@
 <%= link_to "New Spell", new_spell_path %>
 <br /><br/>
 
-<table>
-<tr>
-  <td>Name</td>
-</tr>
-<% @spells.each do |spell| %>
+<%= form_tag list_spells_path, :remote => true, :id => "spell_filter_form" do %>
+  <%= label_tag "Class" %>
+  <%= select(:spell_filter, :klass, @klasses) %>
 
-  <tr>
-    <td><%= link_to spell.name, spell %></td>
-    <td><%= link_to 'Edit', edit_spell_path(spell) %></td>
-  </tr>
+  <%= label_tag "Level" %>
+  <%= select(:spell_filter, :level, @levels, {}, {disabled: true}) %>
 
+  <%= label_tag "School" %>
+  <%= select(:spell_filter, :school, options_for_select(@schools)) %>
+
+  <%= label_tag "Source" %>
+  <%= select(:spell_filter, :source, options_for_select(@sources)) %>
 <% end %>
-</table>
+
+<div id="spell_list_container">
+  <%= render partial: 'spell_list' %>
+</div>
+
+<%= render :partial => 'shared/spell_dialog' %>
+
+<script type="text/javascript">
+
+  $("#spell_filter_klass, #spell_filter_level, #spell_filter_school, #spell_filter_source").change(function() {
+
+    if ($("#spell_filter_klass").val() != '') {
+      $("#spell_filter_level").prop('disabled', false);
+      $("#spell_filter_level").children("option").first().html('Any');
+    } else {
+      $("#spell_filter_level").prop('disabled', true);
+      $("#spell_filter_level").val('');
+      $("#spell_filter_level").children("option").first().html('----');
+    }
+
+    $("#spell_filter_form").submit();
+  });
+
+</script>

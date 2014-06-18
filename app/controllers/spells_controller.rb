@@ -1,6 +1,41 @@
 class SpellsController < ApplicationController
   def index
-    @spells = Spell.order("name")
+
+    @klasses = Hash[[['Any', nil]] + Klass.order('name').map { |k| [k.name, k.id] }]
+
+    @levels = Hash[[['----', nil]] + (0..9).to_a.map { |l| [l, l] }]
+
+    @schools = Hash[School.order(:name).map { |s| [s.name, s.id]}]
+    @schools = {'Any' => nil}.merge(@schools)
+    @schools['Any'] = nil
+
+    @sources = Spell.select('COUNT(spells.id) AS c').group(:source).order('c DESC, source').pluck(:source)
+    @sources = @sources.map { |s| [s, s] }
+    @sources = [['Any', nil]] + @sources
+    @sources = Hash[@sources]
+
+    list
+  end
+
+  def list
+    klass, level, school, source = nil
+
+    if params[:spell_filter]
+      klass = params[:spell_filter][:klass]
+      level = params[:spell_filter][:level]
+      school = params[:spell_filter][:school]
+      source = params[:spell_filter][:source]
+    end
+
+    @spells = Spell.order("name").includes(:klass_spells => :klass)
+
+    if klass.present?
+      @spells = @spells.joins(:klass_spells).where('klass_id = ?', klass)
+      @spells = @spells.where('klass_spells.level = ?', level) if level.present?
+    end
+
+    @spells = @spells.where("spells.school_id = ?", school) if school.present?
+    @spells = @spells.where("spells.source = ?", source) if source.present?
   end
   
   def show

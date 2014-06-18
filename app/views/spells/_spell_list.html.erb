@@ -1,0 +1,19 @@
+
+<table>
+  <tr>
+    <td>Name</td>
+    <td>School</td>
+    <td>Source</td>
+    <td></td>
+  </tr>
+  <% @spells.each do |spell| %>
+
+    <tr>
+      <td><%= link_to spell.name, spell, remote: true %></td>
+      <td><%= spell.formatted_school %></td>
+      <td><%= spell.source %></td>
+      <td><%= link_to 'Edit', edit_spell_path(spell) %></td>
+    </tr>
+
+  <% end %>
+</table>

@@ -21,7 +21,11 @@ Spellsheet::Application.routes.draw do
   
   match '/spell_book/new(.:format)' => 'spell_books#new', :as => 'new_spell_book', :via => :post, :defaults => { :format => "html" }
 
-  resources :spells, :except => [:destroy]
+  resources :spells, :except => [:destroy] do
+    collection do
+      post 'list'
+    end
+  end
   
   root :to => 'libraries#index'
 end
