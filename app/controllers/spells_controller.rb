@@ -27,7 +27,7 @@ class SpellsController < ApplicationController
       source = params[:spell_filter][:source]
     end
 
-    @spells = Spell.order("name").includes(:klass_spells => :klass)
+    @spells = Spell.order("name").includes(:school, {:klass_spells => :klass})
 
     if klass.present?
       @spells = @spells.joins(:klass_spells).where('klass_id = ?', klass)
