@@ -4,6 +4,7 @@ gem 'rails', '3.2.22'
 
 gem 'sqlite3'
 gem 'mysql2'
+gem 'activerecord-mysql2-adapter'
 gem 'activerecord-import', '~> 0.5.0'
 gem 'prawn_rails'
 gem 'prawn', '~> 0.12.0'

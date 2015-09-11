@@ -25,6 +25,8 @@ GEM
       tzinfo (~> 0.3.29)
     activerecord-import (0.5.0)
       activerecord (>= 3.0)
+    activerecord-mysql2-adapter (0.0.3)
+      mysql2
     activeresource (3.2.22)
       activemodel (= 3.2.22)
       activesupport (= 3.2.22)
@@ -149,6 +151,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-import (~> 0.5.0)
+  activerecord-mysql2-adapter
   capistrano (~> 2.15.5)
   jquery-rails (~> 3.1.0)
   jquery-ui-rails (~> 4.2.0)
