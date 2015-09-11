@@ -25,8 +25,6 @@ GEM
       tzinfo (~> 0.3.29)
     activerecord-import (0.5.0)
       activerecord (>= 3.0)
-    activerecord-mysql2-adapter (0.0.3)
-      mysql2
     activeresource (3.2.22)
       activemodel (= 3.2.22)
       activesupport (= 3.2.22)
@@ -63,7 +61,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     multi_json (1.11.2)
-    mysql2 (0.4.0)
+    mysql2 (0.3.20)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -151,11 +149,10 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-import (~> 0.5.0)
-  activerecord-mysql2-adapter
   capistrano (~> 2.15.5)
   jquery-rails (~> 3.1.0)
   jquery-ui-rails (~> 4.2.0)
-  mysql2
+  mysql2 (~> 0.3.20)
   prawn (~> 0.12.0)
   prawn_rails
   rails (= 3.2.22)
