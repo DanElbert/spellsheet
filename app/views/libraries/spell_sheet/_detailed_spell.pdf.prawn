@@ -38,7 +38,7 @@ pdf.group do
     heading(pdf, "DESCRIPTION")
 
     pdf.pad(font_percent(75)) do
-      pdf.text "#{spell.description.gsub(/\.  /, ".\n\n")}"
+      pdf.text "#{(spell.description || '').gsub(/\.  /, ".\n\n")}"
     end
   end
 end

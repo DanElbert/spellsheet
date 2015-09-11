@@ -1,5 +1,5 @@
 web:
-  image: danelbert/spellsheet:latest
+  image: danelbert/spellsheet:production
   ports:
     - "4000:80"
   environment:
