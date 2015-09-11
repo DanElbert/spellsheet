@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+
+unless system('docker inspect spellsheet_db_data')
+  puts 'Creating data container...'
+  `docker create -v /var/lib/mysql -v /data --name spellsheet_db_data mysql:5.6`
+
+  Dir.chdir(File.expand_path(File.dirname(__FILE__) + '/../')) do
+    `docker-compose build`
+    `docker-compose pull`
+
+    bash_cmd = 'sleep 10 && rake db:create db:migrate db:seed'
+    `docker-compose run web bash -c "#{bash_cmd}"`
+    `docker-compose stop`
+    `docker-compose rm --force`
+  end
+end

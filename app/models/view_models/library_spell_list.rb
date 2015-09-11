@@ -42,7 +42,7 @@ module ViewModels
         @spells << s
       end
 
-      ActiveRecord::Associations::Preloader.new(@spells, :school).run
+      ActiveRecord::Associations::Preloader.new.preload(@spells, :school)
 
       memorized_spells = MemorizedSpell.where(id: @spells.map{ |s| s.memorized_spell_id })
 

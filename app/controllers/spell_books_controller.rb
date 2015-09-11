@@ -9,7 +9,7 @@ class SpellBooksController < ApplicationController
     @schools = {'Any' => nil}.merge(@schools)
     @schools['Any'] = nil
 
-    @sources = Spell.joins(:klass_spells).where('klass_spells.klass_id = ?', @spell_book.klass_id).select('COUNT(spells.id) AS c').group(:source).order('c DESC, source').pluck(:source)
+    @sources = Spell.joins(:klass_spells).select('COUNT(spells.id) AS c, source').where('klass_spells.klass_id = ?', @spell_book.klass_id).group(:source).order('c DESC, source').map { |s| s.source }
     @sources = @sources.map { |s| [s, s] }
     @sources = [['Any', nil]] + @sources
     @sources = Hash[@sources]
@@ -122,7 +122,7 @@ class SpellBooksController < ApplicationController
 
     @available = @available.to_a.select{ |ks| !@spell_book.klass_spell_ids.include? ks.id }.map { |ks| [ks.spell.name, ks.id]}
 
-    @current = @spell_book.klass_spell_spell_books.includes(:klass_spell => :spell).order("level, spells.name")
+    @current = @spell_book.klass_spell_spell_books.joins(:klass_spell => :spell).order("level, spells.name")
   end
 
 end

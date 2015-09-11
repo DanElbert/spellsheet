@@ -1,32 +1,29 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.22'
+gem 'rails', '4.2.4'
 
 gem 'sqlite3'
-gem 'mysql2', '~> 0.3.20'
-gem 'activerecord-import', '~> 0.5.0'
+gem 'mysql2', '~> 0.3.18'
+gem 'activerecord-import', '~> 0.10.0'
 gem 'prawn_rails'
 gem 'prawn', '~> 0.12.0'
-gem 'thin'
+
+gem 'protected_attributes', '~> 1.1.3'
 
 group :deploy do
   gem 'capistrano', '~> 2.15.5'
   gem 'rvm-capistrano'
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails', '~> 3.2.6'
+gem 'sass-rails', '~> 5.0.4'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', :platforms => :ruby
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'uglifier', '>= 1.0.3'
 
-gem 'jquery-rails', '~> 3.1.0'
-gem 'jquery-ui-rails', '~> 4.2.0'
+gem 'jquery-rails', '~> 4.0.5'
+gem 'jquery-ui-rails', '~> 5.0.5'
 
 gem 'skeleton-rails', '~> 0.1.0'
 

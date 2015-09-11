@@ -9,7 +9,7 @@ class SpellsController < ApplicationController
     @schools = {'Any' => nil}.merge(@schools)
     @schools['Any'] = nil
 
-    @sources = Spell.select('COUNT(spells.id) AS c').group(:source).order('c DESC, source').pluck(:source)
+    @sources = Spell.select('COUNT(spells.id) AS c, source').group(:source).order('c DESC, source').map { |s| s.source }
     @sources = @sources.map { |s| [s, s] }
     @sources = [['Any', nil]] + @sources
     @sources = Hash[@sources]

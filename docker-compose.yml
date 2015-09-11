@@ -1,0 +1,17 @@
+mysql:
+  image: mysql:5.6
+  environment:
+    - MYSQL_ROOT_PASSWORD=mysupersecret
+    - MYSQL_DATABASE=spellsheet
+    - MYSQL_USER=spellsheet
+    - MYSQL_PASSWORD=password
+  volumes_from:
+    - spellsheet_db_data
+
+
+web:
+  build: .
+  ports:
+    - "3000:80"
+  links:
+    - mysql

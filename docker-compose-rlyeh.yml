@@ -1,0 +1,9 @@
+web:
+  image: danelbert/spellsheet:latest
+  ports:
+    - "4000:80"
+  environment:
+    - PASSENGER_APP_ENV=production
+  env_file: /etc/default/spellsheet
+  volumes:
+    - /var/log/spellsheet/:/home/app/spellsheet/log
