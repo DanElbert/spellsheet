@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.17'
+gem 'rails', '3.2.22'
 
 gem 'sqlite3'
 gem 'mysql2'
@@ -29,6 +29,10 @@ gem 'jquery-rails', '~> 3.1.0'
 gem 'jquery-ui-rails', '~> 4.2.0'
 
 gem 'skeleton-rails', '~> 0.1.0'
+
+group :test do
+  gem 'test-unit'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
