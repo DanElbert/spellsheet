@@ -8,6 +8,6 @@ class KlassSpell < ActiveRecord::Base
   has_many :klass_spell_spell_books, dependent: :destroy
   has_many :spell_books, :through => :klass_spell_spell_books
   
-  validates :klass, :spell, :presence => true
+  validates :klass_id, :spell_id, :presence => true
   
 end

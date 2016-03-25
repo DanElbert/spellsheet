@@ -52,7 +52,7 @@ class DataImport::Importer
           spell_attrs[k] = row[(v || k).to_s]
         end
 
-        spell = spells.detect { |s| s.name == row['name'].strip }
+        spell = spells.detect { |s| s.name.downcase.strip == row['name'].downcase.strip }
         spell ||= Spell.new
 
         spell_attrs[:school] = school

@@ -1,19 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.4'
+gem 'rails', '4.2.6'
 
 gem 'sqlite3'
 gem 'mysql2', '~> 0.3.18'
-gem 'activerecord-import', '~> 0.10.0'
+gem 'activerecord-import', '~> 0.12.0'
 gem 'prawn_rails'
-gem 'prawn', '~> 0.12.0'
+gem 'prawn', '~> 2.1.0'
 
 gem 'protected_attributes', '~> 1.1.3'
-
-group :deploy do
-  gem 'capistrano', '~> 2.15.5'
-  gem 'rvm-capistrano'
-end
 
 gem 'sass-rails', '~> 5.0.4'
 
@@ -22,7 +17,8 @@ gem 'therubyracer', :platforms => :ruby
 
 gem 'uglifier', '>= 1.0.3'
 
-gem 'jquery-rails', '~> 4.0.5'
+gem 'kaminari', '~> 0.16.3'
+gem 'jquery-rails', '~> 4.1.1'
 gem 'jquery-ui-rails', '~> 5.0.5'
 
 gem 'skeleton-rails', '~> 0.1.0'

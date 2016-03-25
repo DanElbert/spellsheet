@@ -3,7 +3,7 @@
 
   <strong>School</strong> <%= @spell.formatted_school %>;
 
-  <% klasses = @spell.klass_spells.joins(:klass).order("klasses.name") %>
+  <% klasses = @spell.klass_spells.sort { |a, b| a.klass.name <=> b.klass.name } %>
 
   <strong>Level</strong> <%= klasses.map { |ks| "#{ks.klass.name} #{ks.level}" }.join(", ") %>
 

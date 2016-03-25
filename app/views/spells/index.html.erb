@@ -14,6 +14,11 @@
 
   <%= label_tag "Source" %>
   <%= select(:spell_filter, :source, options_for_select(@sources)) %>
+
+  <%= label_tag "Spell Name" %>
+  <%= text_field(:spell_filter, :spell_name) %>
+
+  <input id="page_input" type="hidden" name="page" value="" />
 <% end %>
 
 <div id="spell_list_container">
@@ -24,8 +29,9 @@
 
 <script type="text/javascript">
 
-  $("#spell_filter_klass, #spell_filter_level, #spell_filter_school, #spell_filter_source").change(function() {
+  var keydownTimer = null;
 
+  function refreshSpells(page) {
     if ($("#spell_filter_klass").val() != '') {
       $("#spell_filter_level").prop('disabled', false);
       $("#spell_filter_level").children("option").first().html('Any');
@@ -35,7 +41,27 @@
       $("#spell_filter_level").children("option").first().html('----');
     }
 
+    $("#page_input").val(page);
+
     $("#spell_filter_form").submit();
+  }
+
+  $("#spell_filter_klass, #spell_filter_level, #spell_filter_school, #spell_filter_source, #spell_filter_spell_name").change(function() {
+    refreshSpells('');
+  });
+
+  $("#spell_filter_spell_name").on("keydown", function(e) {
+    if (e.which == 13) {
+      refreshSpells('');
+    }
+  });
+
+  $("#spell_list_container").on("click", "nav.pagination a", function(e) {
+    var page = /page=(\d+)/.exec($(this).attr("href"))[1];
+    $("#page_input").val(page);
+    refreshSpells(page);
+    e.preventDefault();
+    return false;
   });
 
 </script>

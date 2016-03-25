@@ -18,13 +18,14 @@ class SpellsController < ApplicationController
   end
 
   def list
-    klass, level, school, source = nil
+    klass, level, school, source, name = nil
 
     if params[:spell_filter]
       klass = params[:spell_filter][:klass]
       level = params[:spell_filter][:level]
       school = params[:spell_filter][:school]
       source = params[:spell_filter][:source]
+      name = params[:spell_filter][:spell_name]
     end
 
     @spells = Spell.order("name").includes(:school, {:klass_spells => :klass})
@@ -36,10 +37,13 @@ class SpellsController < ApplicationController
 
     @spells = @spells.where("spells.school_id = ?", school) if school.present?
     @spells = @spells.where("spells.source = ?", source) if source.present?
+    @spells = @spells.where("spells.name LIKE ?", "%#{name}%") if name.present?
+
+    @spells = @spells.page(params[:page]).per(200)
   end
   
   def show
-    @spell = Spell.find(params[:id])
+    @spell = Spell.includes(:klass_spells => :klass).find(params[:id])
   end
 
   def new

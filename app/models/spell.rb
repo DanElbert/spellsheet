@@ -12,12 +12,12 @@ class Spell < ActiveRecord::Base
   end
 
   def klass_level_for_klass(klass_id)
-    klass_spells.detect { |klass_spell| klass_spell.klass_id == klass_id }
+    klass_spells.detect { |klass_spell| klass_spell.klass_id.to_i == klass_id.to_i }
   end
 
   def remove_klass(klass_id)
-    ks = klass_spells.detect { |klass_spell| klass_spell.klass_id == klass_id }
-    klass_spells.delete(ks) if ks
+    ks = klass_spells.detect { |klass_spell| klass_spell.klass_id.to_i == klass_id.to_i }
+    ks.destroy if ks
   end
 
   def level_summary

@@ -6,7 +6,7 @@ def heading(pdf, text)
   pdf.stroke_horizontal_rule
 end
 
-pdf.group do
+#pdf.group do
   pdf.pad(font_percent(100)) do
     pdf.text "<b>#{spell.name}</b>", :size => font_percent(150), :inline_format => true
   end
@@ -41,6 +41,6 @@ pdf.group do
       pdf.text "#{(spell.description || '').gsub(/\.  /, ".\n\n")}"
     end
   end
-end
+#end
 
 pdf.move_down [pdf.cursor, font_percent(200)].min
