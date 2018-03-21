@@ -25,6 +25,8 @@ gem 'skeleton-rails', '~> 0.1.0'
 
 gem 'puma', '~> 3.11'
 
+gem 'tzinfo-data'
+
 group :test do
   gem 'test-unit'
 end

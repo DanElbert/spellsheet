@@ -143,6 +143,8 @@ GEM
     ttfunk (1.4.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2018.3)
+      tzinfo (>= 1.0.0)
     uglifier (4.1.8)
       execjs (>= 0.3.0, < 3)
 
@@ -165,6 +167,7 @@ DEPENDENCIES
   sqlite3
   test-unit
   therubyracer
+  tzinfo-data
   uglifier (>= 1.0.3)
 
 BUNDLED WITH
