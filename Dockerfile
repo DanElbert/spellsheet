@@ -11,6 +11,11 @@ RUN rm /etc/nginx/sites-enabled/default
 ADD docker/nginx_server.conf /etc/nginx/sites-enabled/spellsheet.conf
 ADD docker/nginx_env.conf /etc/nginx/main.d/env.conf
 
+# Add DB Migration Script
+RUN mkdir -p /etc/my_init.d
+ADD docker/db_migrate.sh /etc/my_init.d/db_migrate.sh
+RUN chmod +x /etc/my_init.d/db_migrate.sh
+
 # Set Default RAILS_ENV
 ENV PASSENGER_APP_ENV docker
 
