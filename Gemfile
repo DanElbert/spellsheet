@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.10'
 
 gem 'sqlite3'
 gem 'mysql2', '~> 0.3.18'
@@ -22,6 +22,8 @@ gem 'jquery-rails', '~> 4.1.1'
 gem 'jquery-ui-rails', '~> 5.0.5'
 
 gem 'skeleton-rails', '~> 0.1.0'
+
+gem 'puma', '~> 3.11'
 
 group :test do
   gem 'test-unit'

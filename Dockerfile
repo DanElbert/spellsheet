@@ -1,4 +1,4 @@
-FROM phusion/passenger-ruby22:latest
+FROM phusion/passenger-ruby24:latest
 
 # Use baseimage-docker's init process.
 CMD ["/sbin/my_init"]
